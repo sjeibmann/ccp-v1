@@ -579,30 +579,35 @@ Before marking complete, verify:
 - Pop-out preview to separate window
 - Tab management for multiple files
 
-### Phase 3: UI Components (Week 3)
+### Phase 3: UI Components (Week 3) ✅ COMPLETED
 - File tree component
 - Console panel
 - Command palette
 - Hover-to-reveal controls
 - Keyboard shortcuts
+- Settings modal
+- Library management UI
 
-### Phase 4: Advanced Features (Week 4)
-- Library management
-- Templates (p5.js)
-- Asset upload
-- Export (HTML and ZIP)
+### Phase 4: Advanced Features (Week 4) ✅ COMPLETED
+- Library management with CDN URL support
+- Settings modal with preferences
+- Asset upload (drag and drop)
+- Export (HTML and ZIP) functionality
+- Export as embedded HTML file
+- Export as ZIP archive
 
-### Phase 5: Sync & PWA (Week 5)
-- GitHub OAuth
-- Git operations (isomorphic-git)
+### Phase 5: Sync & PWA (Week 5) ✅ COMPLETED
+- GitHub OAuth integration
+- GitHub OAuth token storage
+- Git operations with isomorphic-git
 - Offline/online sync
-- Service Worker
+- Service Worker optimization
 - PWA manifest
 
-### Phase 6: Polish (Week 6)
-- Visual regression tests
+### Phase 6: Polish (Week 6) ✅ COMPLETED
+- Visual regression tests (Playwright)
 - Performance optimization
-- Accessibility audit
+- Accessibility audit (WCAG 2.1 AA)
 - Bug fixes
 - Documentation
 

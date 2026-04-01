@@ -15,6 +15,11 @@ import Layout from '../components/layout/layout.js';
 import FileTree from '../components/file-tree/file-tree.js';
 import ConsolePanel from '../components/console/console.js';
 import CommandPalette from '../components/command-palette/command-palette.js';
+import SettingsModal from '../components/modals/settings/settings.js';
+import LibraryManager from '../components/modals/library-manager.js';
+import Export from '../components/export.js';
+import GitHubOAuth from '../modules/github.js';
+import GitOperations from '../modules/git-operations.js';
 
 // Register modules
 const modules = [
@@ -26,12 +31,24 @@ const modules = [
   Layout,
   FileTree,
   ConsolePanel,
-  CommandPalette
+  CommandPalette,
+  SettingsModal,
+  LibraryManager,
+  Export
 ];
 
 modules.forEach(module => {
   app.registerModule(module.name, module);
 });
+
+// Initialize GitHub OAuth (separate module)
+const githubOAuth = new GitHubOAuth();
+app.registerModule('githubOAuth', githubOAuth);
+
+// Initialize Git Operations (requires GitHub OAuth)
+const gitOperations = new GitOperations();
+gitOperations.init(githubOAuth);
+app.registerModule('gitOperations', gitOperations);
 
 // Setup event handlers
 function setupEventHandlers() {
