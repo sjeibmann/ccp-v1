@@ -23,44 +23,6 @@ Creative Code Platform is a lightweight, offline-first coding environment that a
 - **Version Control**: isomorphic-git (future)
 - **Testing**: Jest (unit) + Playwright (visual)
 
-## Phases
-
-### ✅ Phase 1: Foundation (COMPLETED)
-- Project setup and structure
-- State management module
-- File System Access API integration
-- Project CRUD operations
-
-### ✅ Phase 2: Editor & Preview (COMPLETED)
-- CodeMirror 6 integration with custom neon theme
-- Preview iframe with sandbox support
-- Auto-run with 500ms debounce
-- Layout toggle (editor/preview/fullscreen)
-- Pop-out preview
-
-### ✅ Phase 3: UI Components (COMPLETED)
-- File tree component
-- Console panel
-- Command palette
-- All UI components integrated
-
-### Phase 4: Advanced Features (TODO)
-- Settings modal
-- Library management UI
-- Export (HTML and ZIP)
-- Project templates
-
-### Phase 5: Sync & PWA (TODO)
-- GitHub OAuth
-- Git operations
-- Offline/online sync
-- Service Worker optimization
-
-### Phase 6: Polish (TODO)
-- Visual regression tests
-- Performance optimization
-- Accessibility audit
-
 ## Getting Started
 
 ### Prerequisites
