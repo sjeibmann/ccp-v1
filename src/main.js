@@ -12,6 +12,9 @@ import Editor from '../components/editor/editor.js';
 import TabManager from '../components/editor/tabManager.js';
 import Preview from '../components/preview/preview.js';
 import Layout from '../components/layout/layout.js';
+import FileTree from '../components/file-tree/file-tree.js';
+import ConsolePanel from '../components/console/console.js';
+import CommandPalette from '../components/command-palette/command-palette.js';
 
 // Register modules
 const modules = [
@@ -20,7 +23,10 @@ const modules = [
   Editor,
   TabManager,
   Preview,
-  Layout
+  Layout,
+  FileTree,
+  ConsolePanel,
+  CommandPalette
 ];
 
 modules.forEach(module => {

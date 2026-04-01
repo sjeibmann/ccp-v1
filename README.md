@@ -1,15 +1,10 @@
 # Creative Code Platform
 
-------
-Work in Progress!! this repo is just getting started and has a long way to go.
-
-------
-
 A distraction-free creative coding IDE in a Progressive Web App.
 
 ## Overview
 
-Creative Code Platform is a lightweight, offline-first coding environment that allows users to live-code with popular creative coding libraries like p5.js, Three.js, and GSAP. The app features a minimal, distraction-free interface.
+Creative Code Platform is a lightweight, offline-first coding environment that allows users to live-code with popular creative coding libraries like p5.js, Three.js, and GSAP. The app features a minimal, distraction-free interface inspired by CodePen 2.0.
 
 ## Features
 
@@ -19,36 +14,83 @@ Creative Code Platform is a lightweight, offline-first coding environment that a
 - **Distraction-Free**: Minimal UI with hover-to-reveal controls
 - **Git Sync**: GitHub-based version control with conflict resolution
 
-## Requirements
+## Tech Stack
+
+- **Build Tool**: Parcel v2
+- **Editor**: CodeMirror 6
+- **State Management**: Vanilla JS Proxy
+- **File System**: File System Access API
+- **Version Control**: isomorphic-git (future)
+- **Testing**: Jest (unit) + Playwright (visual)
+
+## Phases
+
+### ✅ Phase 1: Foundation (COMPLETED)
+- Project setup and structure
+- State management module
+- File System Access API integration
+- Project CRUD operations
+
+### ✅ Phase 2: Editor & Preview (COMPLETED)
+- CodeMirror 6 integration with custom neon theme
+- Preview iframe with sandbox support
+- Auto-run with 500ms debounce
+- Layout toggle (editor/preview/fullscreen)
+- Pop-out preview
+
+### ✅ Phase 3: UI Components (COMPLETED)
+- File tree component
+- Console panel
+- Command palette
+- All UI components integrated
+
+### Phase 4: Advanced Features (TODO)
+- Settings modal
+- Library management UI
+- Export (HTML and ZIP)
+- Project templates
+
+### Phase 5: Sync & PWA (TODO)
+- GitHub OAuth
+- Git operations
+- Offline/online sync
+- Service Worker optimization
+
+### Phase 6: Polish (TODO)
+- Visual regression tests
+- Performance optimization
+- Accessibility audit
+
+## Getting Started
+
+### Prerequisites
 
 - Node.js 16+
 - Modern browser with File System Access API (Chrome 86+, Edge 86+)
 
-## Getting Started
-
 ### Installation
 
-1. Clone or navigate to the project directory
-
-2. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Start development server:
+### Development
+
 ```bash
 npm start
 ```
 
-4. Open the app in your browser at `http://localhost:1234`
-
-### Building for Production
+### Build for Production
 
 ```bash
 npm run build
 ```
 
-The build will be output to the `dist/` folder.
+### Run Tests
+
+```bash
+npm test
+```
 
 ## Project Structure
 
@@ -62,62 +104,29 @@ creative-code-platform/
 │   │   └── events.js     # Event bus
 │   ├── modules/          # Feature modules
 │   │   ├── filesystem/   # File system access
-│   │   ├── project/      # Project management
-│   │   └── ...
+│   │   └── project/      # Project management
 │   ├── components/       # UI components
+│   │   ├── editor/       # Code editor
+│   │   ├── preview/      # Preview iframe
+│   │   ├── layout/       # Layout manager
+│   │   ├── file-tree/    # File navigation
+│   │   ├── console/      # Output panel
+│   │   └── command-palette/ # Quick commands
 │   └── styles/          # CSS styles
 ├── public/               # Public assets
 │   ├── index.html       # Main HTML
-│   └── styles/          # Public CSS
-├── tests/                # Tests
-│   ├── unit/            # Unit tests
-│   └── visual/          # Visual regression tests
-└── dist/                 # Production build (after build)
+│   ├── manifest.json    # PWA manifest
+│   └── sw.js            # Service Worker
+└── tests/                # Tests
+    ├── unit/            # Unit tests
+    └── visual/          # Visual regression tests
 ```
-
-## Tech Stack
-
-- **Build Tool**: Parcel v2
-- **Code Editor**: CodeMirror 6
-- **State Management**: Vanilla JS Proxy
-- **File System**: File System Access API
-- **Version Control**: isomorphic-git
-
-## Key Modules
-
-### Core
-- `app.js` - Main application controller
-- `router.js` - Simple hash-based routing
-- `state.js` - Centralized state management
-- `events.js` - Event bus for component communication
-
-### Modules
-- `filesystem/` - File System Access API wrapper
-- `project/` - Project CRUD operations
-- `git/` - GitHub integration (future)
-- `sync/` - Offline/online sync (future)
-
-### Components
-- `editor/` - CodeMirror wrapper
-- `preview/` - Interactive preview
-- `file-tree/` - File navigation
-- `console/` - Output panel
 
 ## Browser Support
 
-- Chrome 86+ (File System Access API)
-- Edge 86+
-- Firefox (limited support)
-- Safari (pending API support)
+- Chrome 86+ (File System Access API required)
+- Additional browser support TBD.
 
-## Contributing
-
-This project is designed for AI agent development. When contributing:
-
-1. Follow the project structure and module patterns
-2. Maintain clear interface contracts
-3. Prefer Vanilla JS with minimal dependencies
-4. Test changes with visual regression tests
 
 ## License
 
@@ -125,4 +134,4 @@ MIT
 
 ## Acknowledgments
 
-CodePen, p5.js, openprocessing.org and all the other creative coding tools built for artists.
+Inspired by CodePen, p5.js, and other creative coding tools.
