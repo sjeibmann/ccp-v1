@@ -1,5 +1,10 @@
 # Creative Code Platform
 
+------
+Work in Progress!! this repo is just getting started and has a long way to go.
+
+------
+
 A distraction-free creative coding IDE in a Progressive Web App.
 
 ## Overview
