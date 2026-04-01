@@ -9,7 +9,7 @@ A distraction-free creative coding IDE in a Progressive Web App.
 
 ## Overview
 
-Creative Code Platform is a lightweight, offline-first coding environment that allows users to live-code with popular creative coding libraries like p5.js, Three.js, and GSAP. The app features a minimal, distraction-free interface inspired by CodePen 2.0.
+Creative Code Platform is a lightweight, offline-first coding environment that allows users to live-code with popular creative coding libraries like p5.js, Three.js, and GSAP. The app features a minimal, distraction-free interface.
 
 ## Features
 
@@ -125,4 +125,4 @@ MIT
 
 ## Acknowledgments
 
-Inspired by CodePen, p5.js, and other creative coding tools.
+CodePen, p5.js, openprocessing.org and all the other creative coding tools built for artists.
