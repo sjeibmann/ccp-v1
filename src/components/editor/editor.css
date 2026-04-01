@@ -1,0 +1,241 @@
+/* CodeMirror Neon Theme */
+
+.cm-editor {
+  height: 100%;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 14px;
+}
+
+.cm-editor .cm-scroller {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: auto;
+}
+
+.cm-editor .cm-activeLine {
+  background-color: rgba(157, 0, 255, 0.1);
+}
+
+.cm-editor .cm-activeLineGutter {
+  background-color: rgba(157, 0, 255, 0.2);
+}
+
+.cm-editor .cm-gutters {
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+}
+
+.cm-editor .cm-lineNumbers {
+  color: var(--text-secondary);
+}
+
+.cm-editor .cm-lineNumbers .cm-gutterElement {
+  padding: 0 8px;
+}
+
+/* Syntax Highlighting Colors */
+.cm.cm-editor .cm-keyword {
+  color: var(--accent-pink);
+}
+
+.cm.cm-editor .cm-variable {
+  color: var(--accent-cyan);
+}
+
+.cm.cm-editor .cm-def {
+  color: var(--accent-cyan);
+}
+
+.cm.cm-editor .cm-builtin {
+  color: var(--accent-green);
+}
+
+.cm.cm-editor .cm-atom {
+  color: var(--accent-purple);
+}
+
+.cm.cm-editor .cm-number {
+  color: var(--accent-purple);
+}
+
+.cm.cm-editor .cm-string {
+  color: var(--accent-yellow);
+}
+
+.cm.cm-editor .cm-comment {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.cm.cm-editor .cm-bracket {
+  color: var(--text-primary);
+}
+
+.cm.cm-editor .cm-attribute {
+  color: var(--accent-pink);
+}
+
+.cm.cm-editor .cm-tag {
+  color: var(--accent-red);
+}
+
+.cm.cm-editor .cm-qualifier {
+  color: var(--accent-green);
+}
+
+.cm.cm-editor .cm-operator {
+  color: var(--text-primary);
+}
+
+.cm.cm-editor .cm-meta {
+  color: var(--text-secondary);
+}
+
+.cm.cm-editor .cm-error {
+  color: var(--accent-red);
+}
+
+/* Selection and Cursor */
+.cm.cm-editor .cm-cursor {
+  border-left: 2px solid var(--accent-cyan);
+}
+
+.cm.cm-editor .cm-selection {
+  background-color: rgba(0, 240, 255, 0.2);
+}
+
+.cm.cm-editor .cm-selectionBackground {
+  background-color: rgba(0, 240, 255, 0.2) !important;
+}
+
+/* Editor Controls */
+.cm-editor-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.cm-editor-control {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 12px;
+  transition: all 100ms ease-out;
+}
+
+.cm-editor-control:hover {
+  border-color: var(--accent-cyan);
+  background-color: var(--bg-secondary);
+}
+
+.cm-editor-control.active {
+  background-color: var(--accent-cyan);
+  color: var(--bg-primary);
+  border-color: var(--accent-cyan);
+}
+
+/* Line Numbers */
+.cm-lineNumber {
+  color: var(--text-secondary);
+  padding: 0 8px;
+  text-align: right;
+  user-select: none;
+}
+
+.cm-lineNumberActive {
+  color: var(--accent-cyan);
+  border-left: 2px solid var(--accent-cyan);
+}
+
+/* Match Brackets */
+.cm.cm-editor .cm-matchingBracket {
+  background-color: rgba(0, 240, 255, 0.2);
+  border-bottom: 1px solid var(--accent-cyan);
+}
+
+.cm.cm-editor .cm-nonmatchingBracket {
+  background-color: rgba(255, 0, 85, 0.2);
+}
+
+/* Search Highlight */
+.cm.cm-editor .cm-searchMatch {
+  background-color: rgba(255, 238, 0, 0.2);
+  border-bottom: 1px solid var(--accent-yellow);
+}
+
+.cm.cm-editor .cm-searchMatchSelected {
+  background-color: rgba(0, 240, 255, 0.3);
+  border-bottom: 1px solid var(--accent-cyan);
+}
+
+/* Tooltip */
+.cm.cm-editor .cm-tooltip {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+.cm.cm-editor .cm-tooltip .cm-tooltip-arrow {
+  display: none;
+}
+
+/* Autocomplete */
+.cm.cm-editor .cm-autocomplete {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: var(--shadow-md);
+}
+
+.cm.cm-editor .cm-autocomplete .cm-autocomplete-entry {
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.cm.cm-editor .cm-autocomplete .cm-autocomplete-entry:hover {
+  background-color: var(--bg-secondary);
+}
+
+.cm.cm-editor .cm-autocomplete .cm-autocomplete-entry.active {
+  background-color: var(--bg-primary);
+  border-left: 2px solid var(--accent-cyan);
+}
+
+/* Status Bar */
+.cm-editor-statusbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* Scrollbar */
+.cm-editor::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.cm-editor::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+.cm-editor::-webkit-scrollbar-thumb {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+}
+
+.cm-editor::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-tertiary);
+}
+
+.cm-editor::-webkit-scrollbar-corner {
+  background: var(--bg-primary);
+}

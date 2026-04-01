@@ -1,0 +1,11 @@
+{
+  "testEnvironment": "node",
+  "testMatch": ["**/tests/unit/**/*.test.js"],
+  "moduleFileExtensions": ["js", "json"],
+  "collectCoverageFrom": [
+    "src/**/*.js",
+    "!tests/**"
+  ],
+  "coverageDirectory": "coverage",
+  "verbose": true
+}

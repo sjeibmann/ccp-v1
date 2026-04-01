@@ -1,0 +1,13 @@
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.js": ["@parcel/transformer-js", "@parcel/transformer-babel"],
+    "*.css": ["@parcel/transformer-css"],
+    "*.html": ["@parcel/transformer-html"]
+  },
+  "optimizers": {
+    "*.js": ["@parcel/optimizer-esbuild"],
+    "*.css": ["@parcel/optimizer-css"],
+    "*.html": ["@parcel/optimizer-htmlmin"]
+  }
+}

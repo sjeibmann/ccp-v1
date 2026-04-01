@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Code Platform</title>
+  <meta name="description" content="A distraction-free creative coding IDE">
+  
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0a0a0f">
+</head>
+<body>
+  <div id="app" class="app">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar" aria-label="File Explorer">
+      <div id="sidebar-controls" class="sidebar-controls">
+        <button class="hover-reveal" data-action="new-project">
+          <span class="icon">📁</span>
+          <span class="label">New Project</span>
+        </button>
+        <button class="hover-reveal" data-action="open-project">
+          <span class="icon">📂</span>
+          <span class="label">Open Project</span>
+        </button>
+      </div>
+      
+      <div id="file-tree-wrapper" class="file-tree-wrapper">
+        <h3 class="file-tree-title">Projects</h3>
+        <ul id="file-tree" class="file-tree" role="tree"></ul>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main id="main" class="main">
+      <!-- Editor -->
+      <section id="editor" class="editor">
+        <div id="editor-header" class="editor-header">
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-tab="index.html" role="tab">index.html</button>
+            <button class="tab" data-tab="style.css" role="tab">style.css</button>
+            <button class="tab" data-tab="script.js" role="tab">script.js</button>
+          </div>
+          <button id="run-button" class="editor-control hover-reveal" title="Run Code (Ctrl/Cmd+Enter)">
+            <span class="icon">▶️</span>
+          </button>
+        </div>
+        <div id="editor-container" class="editor-container"></div>
+      </section>
+      
+      <!-- Preview -->
+      <section id="preview" class="preview" aria-label="Preview">
+        <div id="preview-controls" class="preview-controls">
+          <button class="hover-reveal" data-action="toggle-fullscreen" title="Toggle Fullscreen Preview">
+            <span class="icon">⛶</span>
+          </button>
+          <button class="hover-reveal" data-action="popout-preview" title="Pop out Preview">
+            <span class="icon">↗️</span>
+          </button>
+          <button class="hover-reveal" data-action="toggle-auto-run" title="Toggle Auto-Run">
+            <span class="icon">🔄</span>
+          </button>
+        </div>
+        
+        <div id="preview-placeholder" class="preview-placeholder">
+          <span class="placeholder-icon">▶️</span>
+          <p class="placeholder-text">Click "Run" or start typing to see your creation</p>
+          <p class="placeholder-subtext">(Auto-run is enabled)</p>
+        </div>
+        
+        <iframe id="preview-frame" class="preview-frame" title="Code Preview" sandbox="allow-scripts allow-same-origin"></iframe>
+      </section>
+    </main>
+    
+    <!-- Console Panel -->
+    <section id="console-panel" class="console-panel" aria-label="Console">
+      <div id="console-toggle" class="console-toggle">
+        <button class="icon" data-action="toggle-console">▼</button>
+      </div>
+      
+      <div id="console-header" class="console-header">
+        <span class="console-title">Console</span>
+        <button class="icon" data-action="clear-console" title="Clear Console">🗑️</button>
+      </div>
+      
+      <div id="console-content" class="console-content">
+        <div class="console-entry info">
+          <span class="timestamp">--:--:--</span>
+          <span class="type">INFO</span>
+          <span class="message">Creative Code Platform initialized</span>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Command Palette -->
+    <div id="command-palette" class="command-palette hidden" role="dialog" aria-modal="true" aria-label="Command Palette">
+      <div class="palette-input-wrapper">
+        <span class="icon">➤</span>
+        <input type="text" id="palette-input" class="palette-input" placeholder="Search commands or files..." autocomplete="off">
+      </div>
+      <ul id="palette-results" class="palette-results list" role="listbox"></ul>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Settings">
+      <div class="modal-content settings-modal">
+        <div class="modal-header">
+          <h2 class="modal-title">Settings</h2>
+          <button class="modal-close" data-action="close-modal">✕</button>
+        </div>
+        <div class="modal-body">
+          <form id="settings-form" class="settings-form">
+            <div class="form-group">
+              <label class="form-label" for="auto-run">Auto-run on change</label>
+              <div class="form-control">
+                <input type="checkbox" id="auto-run" class="form-checkbox">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="debounce-time">Debounce time (ms)</label>
+              <input type="number" id="debounce-time" class="form-input" min="100" max="2000" step="100" value="500">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="console-mode">Console mode</label>
+              <select id="console-mode" class="form-select">
+                <option value="full">Full (logs, warnings, errors)</option>
+                <option value="minimal">Minimal (errors only)</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="theme">Theme</label>
+              <select id="theme" class="form-select">
+                <option value="neon">Neon Cyberpunk</option>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-action="close-modal">Cancel</button>
+          <button class="btn primary" data-action="save-settings">Save Settings</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Project Info Modal -->
+    <div id="project-info-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Project Info">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Project Info</h2>
+          <button class="modal-close" data-action="close-modal">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="project-info">
+            <div class="info-item">
+              <label class="info-label">Name:</label>
+              <span class="info-value" id="project-name">Untitled Project</span>
+            </div>
+            <div class="info-item">
+              <label class="info-label">Location:</label>
+              <span class="info-value" id="project-location">--</span>
+            </div>
+            <div class="info-item">
+              <label class="info-label">Files:</label>
+              <span class="info-value" id="project-files">3</span>
+            </div>
+            <div class="info-item">
+              <label class="info-label">Created:</label>
+              <span class="info-value" id="project-created">--</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn primary" data-action="close-modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      try {
+        navigator.serviceWorker.register('/sw.js');
+      } catch (error) {
+        console.log('SW registration failed:', error);
+      }
+    }
+  </script>
+  
+  <!-- Main Module -->
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
