@@ -111,7 +111,7 @@ const FileTree = {
     if (folders.length === 0 && files.length === 0) {
       const placeholder = document.createElement('li');
       placeholder.className = 'file-tree-item';
-      placeholder.innerHTML = '<span class="name">No files</span>';
+      placeholder.innerHTML = '<span class="name" style="color: var(--text-tertiary);">No files</span>';
       this.container.appendChild(placeholder);
     }
   },
@@ -119,25 +119,34 @@ const FileTree = {
   /**
    * Render a folder
    * @param {Object} folder - Folder object
+   * @param {number} depth - Nesting depth
    */
-  renderFolder(folder) {
+  renderFolder(folder, depth = 1) {
     const li = document.createElement('li');
     li.className = 'file-tree-item';
     li.dataset.type = 'folder';
+    li.dataset.depth = depth;
     li.dataset.name = folder.name;
     li.dataset.path = folder.name;
     
     const isExpanded = this.expandedFolders.has(folder.name);
     
     li.innerHTML = `
-      <span class="icon ${isExpanded ? 'expanded' : ''}">📁</span>
+      <span class="icon icon-folder" title="Folder">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </span>
       <span class="name">${folder.name}</span>
+      <span class="chevron" title="Expand">${isExpanded ? '▼' : '▶'}</span>
     `;
     
     // Toggle expand on click
     li.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.toggleFolder(folder.name);
+      if (!e.target.closest('.chevron')) {
+        e.stopPropagation();
+        this.toggleFolder(folder.name);
+      }
     });
     
     // Double click to open folder
@@ -152,23 +161,41 @@ const FileTree = {
   /**
    * Render a file
    * @param {Object} file - File object
+   * @param {number} depth - Nesting depth
    */
-  renderFile(file) {
+  renderFile(file, depth = 1) {
     const li = document.createElement('li');
     li.className = 'file-tree-item';
     li.dataset.type = 'file';
+    li.dataset.depth = depth;
     li.dataset.name = file.name;
     li.dataset.path = file.name;
     
     // Get file extension for icon
     const extension = file.name.split('.').pop();
-    let icon = '📄';
-    if (extension === 'html') icon = '🌐';
-    if (extension === 'css') icon = '🎨';
-    if (extension === 'js') icon = '📝';
+    let iconClass = 'icon-file';
+    let iconTitle = 'File';
+    if (extension === 'html') {
+      iconClass = 'icon-html';
+      iconTitle = 'HTML File';
+    } else if (extension === 'css') {
+      iconClass = 'icon-css';
+      iconTitle = 'CSS File';
+    } else if (extension === 'js') {
+      iconClass = 'icon-js';
+      iconTitle = 'JavaScript File';
+    } else if (extension === 'json') {
+      iconClass = 'icon-json';
+      iconTitle = 'JSON File';
+    }
     
     li.innerHTML = `
-      <span class="icon">${icon}</span>
+      <span class="icon ${iconClass}" title="${iconTitle}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+          <polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </span>
       <span class="name">${file.name}</span>
     `;
     

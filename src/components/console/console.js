@@ -19,6 +19,7 @@ const ConsolePanel = {
     
     // Get container elements
     this.container = document.getElementById('console-content');
+    this.input = document.getElementById('console-input');
     this.toggleButton = document.getElementById('console-toggle');
     this.clearButton = document.getElementById('clear-console');
     
@@ -79,6 +80,28 @@ const ConsolePanel = {
     if (this.clearButton) {
       this.clearButton.addEventListener('click', () => {
         this.clear();
+      });
+    }
+    
+    // Console tab switching
+    const consoleTabs = document.querySelectorAll('.console-tab');
+    consoleTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        consoleTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        console.log(`Console tab changed to: ${tab.dataset.console}`);
+      });
+    });
+    
+    // Console input
+    if (this.input) {
+      this.input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const command = this.input.value;
+          console.log('Console command:', command);
+          this.input.value = '';
+          this.addMessage('info', `Command: ${command}`);
+        }
       });
     }
   },

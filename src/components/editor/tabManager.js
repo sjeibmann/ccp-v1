@@ -119,10 +119,10 @@ const TabManager = {
    * Update tab UI
    */
   updateTabUI() {
-    const tabsContainer = document.getElementById('tabs-container');
+    const tabsContainer = document.querySelector('.tabs');
     if (tabsContainer) {
       // Update tab buttons
-      const buttons = document.querySelectorAll('.tab');
+      const buttons = tabsContainer.querySelectorAll('.tab');
       buttons.forEach(button => {
         const tabId = button.dataset.tab;
         const isActive = tabId === this.activeTab.id;
