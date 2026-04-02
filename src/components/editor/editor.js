@@ -17,14 +17,14 @@ const neonTheme = EditorView.theme({
     padding: '0 8px'
   },
   '.cm-activeLine': {
-    backgroundColor: 'rgba(157, 0, 255, 0.1)'
+    backgroundColor: 'rgba(201, 169, 97, 0.08)'
   },
   '.cm-activeLineGutter': {
-    backgroundColor: 'rgba(157, 0, 255, 0.2)'
+    backgroundColor: 'rgba(201, 169, 97, 0.15)'
   },
   '.cm-gutters': {
-    backgroundColor: 'var(--bg-secondary)',
-    borderColor: 'var(--border-color)'
+    backgroundColor: 'var(--bg-primary)',
+    borderColor: 'var(--border-primary)'
   },
   '.cm-lineNumbers': {
     color: 'var(--text-secondary)'
@@ -36,19 +36,19 @@ const neonTheme = EditorView.theme({
 
 const neonHighlightStyle = syntaxHighlighting(
   [
-    { tag: 'keyword', color: 'var(--accent-pink)' },
-    { tag: 'variableName', color: 'var(--accent-cyan)' },
-    { tag: 'def', color: 'var(--accent-cyan)' },
-    { tag: 'builtin', color: 'var(--accent-green)' },
-    { tag: 'number', color: 'var(--accent-purple)' },
-    { tag: 'string', color: 'var(--accent-yellow)' },
+    { tag: 'keyword', color: 'var(--color-error)' },
+    { tag: 'variableName', color: 'var(--text-primary)' },
+    { tag: 'def', color: 'var(--color-info)' },
+    { tag: 'builtin', color: 'var(--color-success)' },
+    { tag: 'number', color: 'var(--color-info)' },
+    { tag: 'string', color: 'var(--color-warning)' },
     { tag: 'comment', color: 'var(--text-secondary)', fontStyle: 'italic' },
     { tag: 'bracket', color: 'var(--text-primary)' },
-    { tag: 'operator', color: 'var(--text-primary)' },
+    { tag: 'operator', color: 'var(--color-error)' },
     { tag: 'meta', color: 'var(--text-secondary)' },
-    { tag: 'error', color: 'var(--accent-red)' },
-    { tag: 'attribute', color: 'var(--accent-pink)' },
-    { tag: 'tag', color: 'var(--accent-red)' }
+    { tag: 'error', color: 'var(--color-error)' },
+    { tag: 'attribute', color: 'var(--color-error)' },
+    { tag: 'tag', color: 'var(--color-success)' }
   ]
 );
 
