@@ -2,24 +2,24 @@
  * Creative Code Platform - Main Entry Point
  * Initialises the application with all modules
  */
-import { app } from '../core/app.js';
-import { events } from '../core/events.js';
-import { router } from '../core/router.js';
-import { get, set } from '../core/state.js';
-import filesystem from '../modules/filesystem/index.js';
-import project from '../modules/project/index.js';
-import Editor from '../components/editor/editor.js';
-import TabManager from '../components/editor/tabManager.js';
-import Preview from '../components/preview/preview.js';
-import Layout from '../components/layout/layout.js';
-import FileTree from '../components/file-tree/file-tree.js';
-import ConsolePanel from '../components/console/console.js';
-import CommandPalette from '../components/command-palette/command-palette.js';
-import SettingsModal from '../components/modals/settings/settings.js';
-import LibraryManager from '../components/modals/library-manager.js';
-import Export from '../components/export.js';
-import GitHubOAuth from '../modules/github.js';
-import GitOperations from '../modules/git-operations.js';
+import { app } from './core/app.js';
+import { events } from './core/events.js';
+import { router } from './core/router.js';
+import { get, set } from './core/state.js';
+import filesystem from './modules/filesystem/index.js';
+import project from './modules/project/index.js';
+import Editor from './components/editor/editor.js';
+import TabManager from './components/editor/tabManager.js';
+import Preview from './components/preview/preview.js';
+import Layout from './components/layout/layout.js';
+import FileTree from './components/file-tree/file-tree.js';
+import ConsolePanel from './components/console/console.js';
+import CommandPalette from './components/command-palette/command-palette.js';
+import SettingsModal from './components/modals/settings/settings.js';
+import LibraryManager from './components/modals/library-manager.js';
+import Export from './components/export.js';
+import GitHubOAuth from './modules/github.js';
+import GitOperations from './modules/git-operations.js';
 
 // Register modules
 const modules = [

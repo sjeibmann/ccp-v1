@@ -27,7 +27,7 @@ Creative Code Platform is a lightweight, offline-first coding environment that a
 
 ### Prerequisites
 
-- Node.js 16+
+- Node.js 18+ (v18.20.8 tested)
 - Modern browser with File System Access API (Chrome 86+, Edge 86+)
 
 ### Installation
@@ -35,6 +35,30 @@ Creative Code Platform is a lightweight, offline-first coding environment that a
 ```bash
 npm install
 ```
+
+### Troubleshooting Common Issues
+
+If you encounter build errors during `npm install` or `npm start`:
+
+1. **CodeMirror 6 resolve errors** - Install missing packages:
+   ```
+   npm install @codemirror/language @codemirror/commands @codemirror/view @codemirror/state
+   ```
+
+2. ** Parcel optimizer-htmlmin error** - The `.parcelrc` file references `@parcel/optimizer-htmlmin` which doesn't exist. Replace it with `@parcel/optimizer-html` (already fixed in this project).
+
+3. **Module import errors** - Verify all import paths in component files use correct relative paths:
+   - Files in `src/components/*` need `../core/`
+   - Files in `src/components/*/*` need `../../core/`
+   - Files in `src/components/*/sub/*` need `../../../core/`
+   - Files in `src/modules/` need `../core/`
+   - Files in `src/modules/*/` need `../../core/`
+
+4. **Node.js not found** - If npm is not in PATH:
+   ```
+   export PATH="/home/lab/.nvm/versions/node/v18.20.8/bin:$PATH"
+   npm install
+   ```
 
 ### Development
 

@@ -1,8 +1,8 @@
 /**
  * Layout Manager - Handles editor/preview layout
  */
-import { get, set } from '../core/state.js';
-import { events } from '../core/events.js';
+import { get, set } from '../../core/state.js';
+import { events } from '../../core/events.js';
 
 const Layout = {
   name: 'layout',

@@ -2,8 +2,8 @@
  * Library Management Component
  * Manages CDN library integration
  */
-import { get, set } from '../core/state.js';
-import { events } from '../core/events.js';
+import { get, set } from '../../core/state.js';
+import { events } from '../../core/events.js';
 
 const LibraryManager = {
   name: 'libraryManager',
@@ -119,7 +119,7 @@ const LibraryManager = {
    * @param {string} url - CDN URL
    * @returns {Object} Library info
    */
-  static getLibraryInfo(url) {
+  getLibraryInfo(url) {
     const libraryName = this.extractLibraryName(url);
     const version = this.extractVersion(url);
     
@@ -136,7 +136,7 @@ const LibraryManager = {
    * @param {string} url - CDN URL
    * @returns {string} Library name
    */
-  static extractLibraryName(url) {
+  extractLibraryName(url) {
     // Try to extract from CDN URL
     const match = url.match(/\/([^/@]+)(@.+)?\.min\.js/);
     if (match) {
@@ -155,7 +155,7 @@ const LibraryManager = {
    * @param {string} url - CDN URL
    * @returns {string|null} Version string
    */
-  static extractVersion(url) {
+  extractVersion(url) {
     const match = url.match(/@([^/]+)/);
     return match ? match[1] : null;
   }

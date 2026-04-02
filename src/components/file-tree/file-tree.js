@@ -1,9 +1,9 @@
 /**
  * File Tree Component - Side navigation for project files
  */
-import { get, set } from '../core/state.js';
-import { events } from '../core/events.js';
-import FileSystem from '../modules/filesystem/filesystem.js';
+import { get, set } from '../../core/state.js';
+import { events } from '../../core/events.js';
+import FileSystem from '../../modules/filesystem/filesystem.js';
 
 const FileTree = {
   name: 'filetree',

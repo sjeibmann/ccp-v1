@@ -1,8 +1,8 @@
 /**
  * Console Panel Component - Output display for logs, warnings, errors
  */
-import { get, set } from '../core/state.js';
-import { events } from '../core/events.js';
+import { get, set } from '../../core/state.js';
+import { events } from '../../core/events.js';
 
 const ConsolePanel = {
   name: 'console',

@@ -1,18 +1,11 @@
-/**
- * CodeMirror 6 Editor Component
- * Provides a clean wrapper for the CodeMirror editor
- */
 import { EditorState } from '@codemirror/state';
-import { EditorView, keymap, lineNumbers, highlightActiveLine, drawSelection, closeBrackets, history } from '@codemirror/view';
+import { EditorView, keymap, lineNumbers, highlightActiveLine, drawSelection, history } from '@codemirror/view';
 import { javascript } from '@codemirror/lang-javascript';
 import { html } from '@codemirror/lang-html';
 import { css } from '@codemirror/lang-css';
-import { defaultHighlightStyle, syntaxHighlighting } from '@codemirror/highlight';
-import { indentUnit } from '@codemirror/state';
-import { defaultKeymap } from '@codemirror/view';
-import { history as historyExtension } from '@codemirror/view';
+import { syntaxHighlighting, defaultHighlightStyle } from '@codemirror/language';
+import { history as historyExtension } from '@codemirror/commands';
 
-// Custom neon theme
 const neonTheme = EditorView.theme({
   '&': {
     backgroundColor: 'var(--bg-primary)',
@@ -41,7 +34,6 @@ const neonTheme = EditorView.theme({
   }
 });
 
-// Custom neon highlighting style
 const neonHighlightStyle = syntaxHighlighting(
   [
     { tag: 'keyword', color: 'var(--accent-pink)' },
@@ -60,9 +52,13 @@ const neonHighlightStyle = syntaxHighlighting(
   ]
 );
 
-/**
- * CodeMirror Editor Class
- */
+const defaultKeymap = [
+  { key: 'Mod-z', run: historyExtension.undo, preventDefault: true },
+  { key: 'Mod-y', run: historyExtension.redo, preventDefault: true },
+  { key: 'Mod-Shift-z', run: historyExtension.redo, preventDefault: true },
+  { key: 'Mod-a', run: historyExtension.selectAll, preventDefault: true }
+];
+
 class CodeMirrorEditor {
   constructor(container, options = {}) {
     this.container = container;
@@ -73,16 +69,13 @@ class CodeMirrorEditor {
       lineNumbers(),
       highlightActiveLine(),
       drawSelection(),
-      closeBrackets(),
-      history(),
-      defaultKeymap,
-      indentUnit('  '),
+      historyExtension(),
+      keymap.of(defaultKeymap),
       javascript(),
       css(),
       html()
     ];
     
-    // Add language support based on file type
     if (options.language === 'html') {
       this.extensions = [
         ...this.extensions.slice(0, 9),
@@ -103,37 +96,26 @@ class CodeMirrorEditor {
       ];
     }
     
-    // Create initial state
     const initialState = EditorState.create({
       doc: options.content || '',
       extensions: this.extensions
     });
     
-    // Create editor view
     this.view = new EditorView({
       state: initialState,
       parent: this.container
     });
     
-    // Call init callback
     if (options.onInit) {
       options.onInit(this.view);
     }
   }
   
-  /**
-   * Get the current document text
-   * @returns {string} Document content
-   */
   getText() {
     if (!this.view) return '';
     return this.view.state.doc.toString();
   }
   
-  /**
-   * Set new text content
-   * @param {string} text - New text content
-   */
   setText(text) {
     if (!this.view) return;
     this.view.dispatch({
@@ -145,18 +127,12 @@ class CodeMirrorEditor {
     });
   }
   
-  /**
-   * Focus the editor
-   */
   focus() {
     if (this.view) {
       this.view.focus();
     }
   }
   
-  /**
-   * Destroy the editor
-   */
   destroy() {
     if (this.view) {
       this.view.destroy();
@@ -165,32 +141,23 @@ class CodeMirrorEditor {
   }
 }
 
-/**
- * Editor module for managing the CodeMirror instance
- */
 const Editor = {
   name: 'editor',
   view: null,
   
-  /**
-   * Initialize the editor
-   */
   async init() {
     console.log('Initializing Editor module...');
     
-    // Find container element
     const container = document.getElementById('editor-container');
     if (!container) {
       console.error('Editor container not found');
       return;
     }
     
-    // Create editor instance
     this.view = new CodeMirrorEditor(container, {
       content: '// Your code goes here\n',
       onInit: (view) => {
         console.log('CodeMirror editor initialized');
-        // Dispatch event when editor is ready
         window.dispatchEvent(new CustomEvent('editor:ready', { detail: { editor: this } }));
       }
     });
@@ -198,36 +165,22 @@ const Editor = {
     console.log('Editor module initialized');
   },
   
-  /**
-   * Get current editor text
-   * @returns {string} Editor content
-   */
   getText() {
     return this.view ? this.view.getText() : '';
   },
   
-  /**
-   * Set editor text
-   * @param {string} text - New text content
-   */
   setText(text) {
     if (this.view) {
       this.view.setText(text);
     }
   },
   
-  /**
-   * Focus the editor
-   */
   focus() {
     if (this.view) {
       this.view.focus();
     }
   },
   
-  /**
-   * Destroy the editor
-   */
   destroy() {
     if (this.view) {
       this.view.destroy();
@@ -235,10 +188,6 @@ const Editor = {
     }
   },
   
-  /**
-   * Get the CodeMirror view instance
-   * @returns {EditorView|null} Editor view or null
-   */
   getView() {
     return this.view;
   }

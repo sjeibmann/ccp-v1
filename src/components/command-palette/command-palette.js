@@ -1,8 +1,8 @@
 /**
  * Command Palette Component - Quick access to commands and files
  */
-import { get, set } from '../core/state.js';
-import { events } from '../core/events.js';
+import { get, set } from '../../core/state.js';
+import { events } from '../../core/events.js';
 
 const CommandPalette = {
   name: 'commandPalette',

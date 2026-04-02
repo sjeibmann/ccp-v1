@@ -8,6 +8,6 @@
   "optimizers": {
     "*.js": ["@parcel/optimizer-esbuild"],
     "*.css": ["@parcel/optimizer-css"],
-    "*.html": ["@parcel/optimizer-htmlmin"]
+    "*.html": ["@parcel/optimizer-html"]
   }
 }

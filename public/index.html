@@ -6,7 +6,7 @@
   <title>Creative Code Platform</title>
   <meta name="description" content="A distraction-free creative coding IDE">
   
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#0a0a0f">
 </head>
 <body>
@@ -181,10 +181,10 @@
   </div>
   
   <!-- Service Worker Registration -->
-  <script>
+  <script type="module">
     if ('serviceWorker' in navigator) {
       try {
-        navigator.serviceWorker.register('/sw.js');
+        navigator.serviceWorker.register(new URL('/sw.js', import.meta.url).href);
       } catch (error) {
         console.log('SW registration failed:', error);
       }
@@ -192,6 +192,6 @@
   </script>
   
   <!-- Main Module -->
-  <script type="module" src="/main.js"></script>
+  <script type="module" src="../src/main.js"></script>
 </body>
 </html>

@@ -2,8 +2,8 @@
  * Settings Modal Component
  * Manages user preferences and application settings
  */
-import { get, set } from '../core/state.js';
-import { events } from '../core/events.js';
+import { get, set } from '../../../core/state.js';
+import { events } from '../../../core/events.js';
 
 const SettingsModal = {
   name: 'settingsModal',
