@@ -1,11 +1,12 @@
 {
-  "testEnvironment": "node",
-  "testMatch": ["**/tests/unit/**/*.test.js"],
+  "testEnvironment": "jsdom",
+  "testMatch": ["<rootDir>/tests/unit/**/*.test.js"],
   "moduleFileExtensions": ["js", "json"],
   "collectCoverageFrom": [
     "src/**/*.js",
     "!tests/**"
   ],
   "coverageDirectory": "coverage",
-  "verbose": true
+  "verbose": true,
+  "transform": {}
 }
