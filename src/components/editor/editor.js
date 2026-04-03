@@ -152,6 +152,14 @@ const Editor = {
         console.log('[Editor] Content loaded into editor');
       }
     });
+
+    // Listen for tab changes
+    events.on('editor:tabChanged', (e) => {
+      console.log('[Editor] Tab changed event received:', e.detail);
+      if (e.detail && e.detail.tab && e.detail.tab.content) {
+        this.setText(e.detail.tab.content);
+      }
+    });
     
     console.log('Editor module initialized');
   },

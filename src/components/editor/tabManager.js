@@ -28,6 +28,26 @@ const TabManager = {
     this.updateTabUI();
     
     console.log('TabManager initialized');
+    
+    // Add click handlers for tabs
+    const tabsContainer = document.querySelector('.tabs');
+    if (tabsContainer) {
+      tabsContainer.addEventListener('click', (e) => {
+        const tabButton = e.target.closest('.tab');
+        if (tabButton) {
+          const tabId = tabButton.dataset.tab;
+          this.switchTab(tabId);
+        }
+        
+        // Handle close button
+        const closeButton = e.target.closest('.tab-close');
+        if (closeButton) {
+          const tabId = closeButton.dataset.tab;
+          this.closeTab(tabId);
+          e.stopPropagation();
+        }
+      });
+    }
   },
   
   /**

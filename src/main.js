@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   router.parse(window.location.hash.replace('#', ''));
   
   // Start the app
-  app.start();
+  await app.start();
   
   // Create default project after app initialization
   console.log('[DEBUG] Creating default project...');
@@ -533,6 +533,16 @@ function windowResized() {
         content: htmlContent,
         language: 'html'
       });
+      events.dispatch('editor:fileLoaded', { 
+        fileName: 'style.css', 
+        content: cssContent,
+        language: 'css'
+      });
+      events.dispatch('editor:fileLoaded', { 
+        fileName: 'script.js', 
+        content: jsContent,
+        language: 'javascript'
+      });
       // Also dispatch project:loaded for file tree
       events.dispatch('project:loaded', { 
         demo: true,
@@ -541,6 +551,17 @@ function windowResized() {
           files: ['index.html', 'style.css', 'script.js']
         }
       });
+      
+      // Sync demo content to TabManager
+      const TabManager = app.getModule('tabManager');
+      if (TabManager && TabManager.tabs) {
+        TabManager.tabs.forEach(tab => {
+          if (tab.id === 'index.html') tab.content = htmlContent;
+          if (tab.id === 'style.css') tab.content = cssContent;
+          if (tab.id === 'script.js') tab.content = jsContent;
+        });
+      }
+      
       console.log('[DEBUG] Demo content loaded into editor');
       return;
     }

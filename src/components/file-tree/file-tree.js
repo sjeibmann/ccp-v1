@@ -449,8 +449,11 @@ const FileTree = {
     });
 
     events.on('project:loaded', (event) => {
-      const { project, demo } = event.detail;
-      if (demo) {
+      console.log('[FileTree] Received project:loaded event:', event);
+      const data = event.detail || event;
+      const { project, demo } = data;
+      console.log('[FileTree] Extracted data:', { project, demo });
+      if (demo && project && project.files) {
         // Handle demo project - create virtual file tree
         console.log('[FileTree] Loading demo project files');
         this.files = project.files.map(filename => ({
@@ -460,7 +463,7 @@ const FileTree = {
           isDemo: true
         }));
         this.render();
-      } else {
+      } else if (project) {
         this.currentDirectory = project.directory;
         this.listFiles();
       }
