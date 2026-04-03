@@ -5,6 +5,7 @@ import { get, set } from '../../core/state.js';
 import { events } from '../../core/events.js';
 
 const TabManager = {
+  name: 'tabManager',
   tabs: [],
   activeTab: null,
   

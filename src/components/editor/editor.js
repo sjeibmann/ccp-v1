@@ -3,7 +3,7 @@ import { EditorView, keymap, lineNumbers, highlightActiveLine, drawSelection, hi
 import { javascript } from '@codemirror/lang-javascript';
 import { html } from '@codemirror/lang-html';
 import { css } from '@codemirror/lang-css';
-import { syntaxHighlighting, defaultHighlightStyle } from '@codemirror/language';
+import { defaultHighlightStyle, syntaxHighlighting } from '@codemirror/language';
 import { history as historyExtension } from '@codemirror/commands';
 
 const neonTheme = EditorView.theme({
@@ -34,23 +34,8 @@ const neonTheme = EditorView.theme({
   }
 });
 
-const neonHighlightStyle = syntaxHighlighting(
-  [
-    { tag: 'keyword', color: 'var(--color-error)' },
-    { tag: 'variableName', color: 'var(--text-primary)' },
-    { tag: 'def', color: 'var(--color-info)' },
-    { tag: 'builtin', color: 'var(--color-success)' },
-    { tag: 'number', color: 'var(--color-info)' },
-    { tag: 'string', color: 'var(--color-warning)' },
-    { tag: 'comment', color: 'var(--text-secondary)', fontStyle: 'italic' },
-    { tag: 'bracket', color: 'var(--text-primary)' },
-    { tag: 'operator', color: 'var(--color-error)' },
-    { tag: 'meta', color: 'var(--text-secondary)' },
-    { tag: 'error', color: 'var(--color-error)' },
-    { tag: 'attribute', color: 'var(--color-error)' },
-    { tag: 'tag', color: 'var(--color-success)' }
-  ]
-);
+// Use defaultHighlightStyle which is more reliable
+const highlightStyle = syntaxHighlighting(defaultHighlightStyle);
 
 const defaultKeymap = [
   { key: 'Mod-z', run: historyExtension.undo, preventDefault: true },
@@ -63,38 +48,33 @@ class CodeMirrorEditor {
   constructor(container, options = {}) {
     this.container = container;
     this.options = options;
-    this.extensions = [
+    // Base extensions (without language)
+    const baseExtensions = [
       neonTheme,
-      neonHighlightStyle,
+      highlightStyle,
       lineNumbers(),
       highlightActiveLine(),
       drawSelection(),
       historyExtension(),
-      keymap.of(defaultKeymap),
-      javascript(),
-      css(),
-      html()
+      keymap.of(defaultKeymap)
     ];
     
-    if (options.language === 'html') {
-      this.extensions = [
-        ...this.extensions.slice(0, 9),
-        html(),
-        ...this.extensions.slice(9)
-      ];
-    } else if (options.language === 'css') {
-      this.extensions = [
-        ...this.extensions.slice(0, 9),
-        css(),
-        ...this.extensions.slice(9)
-      ];
-    } else if (options.language === 'javascript') {
-      this.extensions = [
-        ...this.extensions.slice(0, 9),
-        javascript(),
-        ...this.extensions.slice(9)
-      ];
+    // Add the appropriate language extension
+    let languageExtension;
+    switch (options.language) {
+      case 'html':
+        languageExtension = html();
+        break;
+      case 'css':
+        languageExtension = css();
+        break;
+      case 'javascript':
+      default:
+        languageExtension = javascript();
+        break;
     }
+    
+    this.extensions = [...baseExtensions, languageExtension];
     
     const initialState = EditorState.create({
       doc: options.content || '',
@@ -141,6 +121,8 @@ class CodeMirrorEditor {
   }
 }
 
+import { events } from '../../core/events.js';
+
 const Editor = {
   name: 'editor',
   view: null,
@@ -159,6 +141,15 @@ const Editor = {
       onInit: (view) => {
         console.log('CodeMirror editor initialized');
         window.dispatchEvent(new CustomEvent('editor:ready', { detail: { editor: this } }));
+      }
+    });
+    
+    // Listen for file loaded events
+    events.on('editor:fileLoaded', (e) => {
+      console.log('[Editor] File loaded event received:', e.detail);
+      if (e.detail && e.detail.content) {
+        this.setText(e.detail.content);
+        console.log('[Editor] Content loaded into editor');
       }
     });
     

@@ -1,25 +1,64 @@
-13811
+13873
 43/home/lab/creative-code-platform/.gitignore1775180112102836474 0
 50/home/lab/creative-code-platform/package-lock.json1775180661814720956 0
 46/home/lab/creative-code-platform/.node-version1775016365958396248 0
 49/home/lab/creative-code-platform/jest.config.json1775176439515132372 0
-56/home/lab/creative-code-platform/dist/public.98e5dff8.js1775180724609964787 0
-61/home/lab/creative-code-platform/dist/public.68d5addb.css.map1775176521614480116 0
-56/home/lab/creative-code-platform/dist/public.63dd3c61.js1775179573909827590 0
-57/home/lab/creative-code-platform/dist/public.016b9879.css1775180724609964787 0
-43/home/lab/creative-code-platform/dist/sw.js1775180724067962640 0
-60/home/lab/creative-code-platform/dist/public.1fcc916e.js.map1775176967592226060 0
-60/home/lab/creative-code-platform/dist/public.63dd3c61.js.map1775179573937827750 0
-60/home/lab/creative-code-platform/dist/public.4171d3a1.js.map1775176521617480116 0
-57/home/lab/creative-code-platform/dist/public.56e1d57b.css1775179573909827590 0
-59/home/lab/creative-code-platform/dist/icon-192.4361a2dc.svg1775180724180963087 0
-58/home/lab/creative-code-platform/dist/manifest.webmanifest1775180724609964787 0
+56/home/lab/creative-code-platform/dist/public.857f30d4.js1775196236008805035 0
+57/home/lab/creative-code-platform/dist/public.016b9879.css1775196276998029028 0
+43/home/lab/creative-code-platform/dist/sw.js1775196276444026001 0
+60/home/lab/creative-code-platform/dist/public.1fcc916e.js.map1775194678606293723 0
+56/home/lab/creative-code-platform/dist/public.ad1920e1.js1775196276999029034 0
+60/home/lab/creative-code-platform/dist/public.857f30d4.js.map1775194678618293789 0
+57/home/lab/creative-code-platform/dist/src/modules/storage1775194507898364264 1
+59/home/lab/creative-code-platform/dist/src/modules/github.js1775194507898364264 0
+67/home/lab/creative-code-platform/dist/src/modules/git-operations.js1775194507898364264 0
+53/home/lab/creative-code-platform/dist/src/modules/git1775194507898364264 1
+69/home/lab/creative-code-platform/dist/src/modules/filesystem/index.js1775194507897364258 0
+60/home/lab/creative-code-platform/dist/src/modules/filesystem1775194507897364258 1
+74/home/lab/creative-code-platform/dist/src/modules/git-operations/README.md1775194507898364264 0
+70/home/lab/creative-code-platform/dist/src/modules/project/package.json1775194507898364264 0
+66/home/lab/creative-code-platform/dist/src/modules/project/index.js1775194507898364264 0
+57/home/lab/creative-code-platform/dist/src/modules/project1775194507898364264 1
+49/home/lab/creative-code-platform/dist/src/modules1775194507898364264 1
+51/home/lab/creative-code-platform/dist/src/templates1775194507899364269 1
+49/home/lab/creative-code-platform/dist/src/main.js1775194507899364269 0
+55/home/lab/creative-code-platform/dist/src/core/state.js1775194507897364258 0
+56/home/lab/creative-code-platform/dist/src/core/router.js1775194507897364258 0
+46/home/lab/creative-code-platform/dist/src/core1775194507897364258 1
+57/home/lab/creative-code-platform/dist/src/styles/main.css1775194507899364269 0
+48/home/lab/creative-code-platform/dist/src/styles1775194507899364269 1
+77/home/lab/creative-code-platform/dist/src/components/status-bar/status-bar.js1775194507899364269 0
+63/home/lab/creative-code-platform/dist/src/components/status-bar1775194507899364269 1
+71/home/lab/creative-code-platform/dist/src/components/console/console.js1775194507898364264 0
+72/home/lab/creative-code-platform/dist/src/components/file-tree/README.md1775194507898364264 0
+69/home/lab/creative-code-platform/dist/src/components/layout/layout.js1775194507899364269 0
+69/home/lab/creative-code-platform/dist/src/components/layout/README.md1775194507899364269 0
+59/home/lab/creative-code-platform/dist/src/components/layout1775194507899364269 1
+69/home/lab/creative-code-platform/dist/src/components/export/README.md1775194507899364269 0
+59/home/lab/creative-code-platform/dist/src/components/export1775194507899364269 1
+69/home/lab/creative-code-platform/dist/src/components/editor/editor.js1775194507898364264 0
+73/home/lab/creative-code-platform/dist/src/components/editor/tabManager.js1775194507898364264 0
+59/home/lab/creative-code-platform/dist/src/components/editor1775194507898364264 1
+66/home/lab/creative-code-platform/dist/src/components/export.js.new1775194507899364269 0
+67/home/lab/creative-code-platform/dist/src/components/git-status-bar1775194507899364269 1
+62/home/lab/creative-code-platform/dist/src/components/export.js1775194507899364269 0
+77/home/lab/creative-code-platform/dist/src/components/modals/conflict-modal.js1775194507898364264 0
+78/home/lab/creative-code-platform/dist/src/components/modals/library-manager.js1775194507898364264 0
+59/home/lab/creative-code-platform/dist/src/components/modals1775194507898364264 1
+70/home/lab/creative-code-platform/dist/src/components/preview/README.md1775194507898364264 0
+52/home/lab/creative-code-platform/dist/src/components1775194507899364269 1
+41/home/lab/creative-code-platform/dist/src1775194507899364269 1
+53/home/lab/creative-code-platform/dist/styles/main.css1775194071599995413 0
+60/home/lab/creative-code-platform/dist/public.ad1920e1.js.map1775196277041029263 0
+59/home/lab/creative-code-platform/dist/icon-192.4361a2dc.svg1775196276444026001 0
+58/home/lab/creative-code-platform/dist/manifest.webmanifest1775196236009805041 0
 53/home/lab/creative-code-platform/public/manifest.json1775180713736921855 0
 58/home/lab/creative-code-platform/public/icons/icon-512.svg1775179712059611752 0
 45/home/lab/creative-code-platform/public/icons1775179712066611792 1
-50/home/lab/creative-code-platform/public/index.html1775180647885668279 0
+54/home/lab/creative-code-platform/public/index.html.bak1775194786300880552 0
+50/home/lab/creative-code-platform/public/index.html1775194802171967057 0
 46/home/lab/creative-code-platform/public/styles1775176515279480469 1
-39/home/lab/creative-code-platform/public1775179712073611831 1
+39/home/lab/creative-code-platform/public1775194786300880552 1
 62/home/lab/creative-code-platform/tests/unit/filesystem.test.js1775176472200325566 0
 54/home/lab/creative-code-platform/tests/unit/TESTING.md1775016647829026379 0
 59/home/lab/creative-code-platform/tests/unit/project.test.js1775176425163047538 0
@@ -42,21 +81,21 @@
 55/home/lab/creative-code-platform/src/modules/filesystem1775016655677071406 1
 59/home/lab/creative-code-platform/src/modules/git-operations1775079340191061221 1
 52/home/lab/creative-code-platform/src/modules/project1775016654546064925 1
-44/home/lab/creative-code-platform/src/main.js1775180396691394427 0
+44/home/lab/creative-code-platform/src/main.js1775193712475059252 0
 50/home/lab/creative-code-platform/src/core/state.js1775016379910477633 0
 51/home/lab/creative-code-platform/src/core/events.js1775016386167514109 0
-52/home/lab/creative-code-platform/src/styles/main.css1775180254377617102 0
+52/home/lab/creative-code-platform/src/styles/main.css1775193690839943259 0
 43/home/lab/creative-code-platform/src/styles1775016447128868594 1
 72/home/lab/creative-code-platform/src/components/status-bar/status-bar.js1775179809294157837 0
 58/home/lab/creative-code-platform/src/components/status-bar1775179809294157837 1
 65/home/lab/creative-code-platform/src/components/console/README.md1775057864617658366 0
-66/home/lab/creative-code-platform/src/components/console/console.js1775179437152039097 0
+66/home/lab/creative-code-platform/src/components/console/console.js1775190063314540543 0
 55/home/lab/creative-code-platform/src/components/console1775057864617658366 1
 57/home/lab/creative-code-platform/src/components/file-tree1775057862735648871 1
 64/home/lab/creative-code-platform/src/components/layout/layout.js1775098570862645457 0
 64/home/lab/creative-code-platform/src/components/layout/README.md1775057694264806613 0
-64/home/lab/creative-code-platform/src/components/editor/editor.js1775159165370019132 0
-68/home/lab/creative-code-platform/src/components/editor/tabManager.js1775108616513901671 0
+64/home/lab/creative-code-platform/src/components/editor/editor.js1775193681544893453 0
+68/home/lab/creative-code-platform/src/components/editor/tabManager.js1775191284861605575 0
 54/home/lab/creative-code-platform/src/components/editor1775017080177488985 1
 61/home/lab/creative-code-platform/src/components/export.js.new1775098440014654718 0
 72/home/lab/creative-code-platform/src/components/modals/conflict-modal.js1775180279500754556 0
@@ -668,6 +707,7 @@
 87/home/lab/creative-code-platform/node_modules/@babel/helpers/lib/helpers/toPrimitive.js1775098709912657692 0
 83/home/lab/creative-code-platform/node_modules/@babel/helpers/lib/helpers/toArray.js1775098709910657678 0
 85/home/lab/creative-code-platform/node_modules/@babel/helpers/lib/helpers/using.js.map1775098709919657742 0
+78/home/lab/creative-code-platform/dist/src/components/command-palette/README.md1775194507898364264 0
 92/home/lab/creative-code-platform/node_modules/@babel/helpers/lib/helpers/objectSpread.js.map1775098709880657463 0
 98/home/lab/creative-code-platform/node_modules/@babel/core/lib/transformation/block-hoist-plugin.js1775098709840657177 0
 97/home/lab/creative-code-platform/node_modules/@babel/helpers/lib/helpers/regeneratorDefine.js.map1775098709895657570 0
@@ -1053,6 +1093,7 @@
 93/home/lab/creative-code-platform/node_modules/tldts-core/dist/types/src/extract-hostname.d.ts1775176449160189380 0
 84/home/lab/creative-code-platform/node_modules/tldts-core/dist/types/src/options.d.ts1775176449187189540 0
 84/home/lab/creative-code-platform/node_modules/tldts-core/dist/types/src/factory.d.ts1775176449167189422 0
+78/home/lab/creative-code-platform/dist/src/components/modals/settings/README.md1775194507898364264 0
 93/home/lab/creative-code-platform/node_modules/tldts-core/dist/types/src/lookup/fast-path.d.ts1775176449175189469 0
 83/home/lab/creative-code-platform/node_modules/tldts-core/dist/types/src/domain.d.ts1775176449155189351 0
 85/home/lab/creative-code-platform/node_modules/tldts-core/dist/types/src/is-valid.d.ts1775176449186189534 0
@@ -1104,7 +1145,7 @@
 95/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/living/events/SubmitEvent-impl.js1775176449938193979 0
 100/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/living/events/CompositionEvent-impl.js1775176449516191485 0
 94/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/living/events/ErrorEvent-impl.js1775176449580191863 0
-68/home/lab/creative-code-platform/dist/isomorphic-git.6ef1bede.js.map1775180724646964933 0
+68/home/lab/creative-code-platform/dist/isomorphic-git.6ef1bede.js.map1775196277039029253 0
 96/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/living/events/MessageEvent-impl.js1775176449724192714 0
 94/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/living/events/WheelEvent-impl.js1775176449979194221 0
 97/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/living/events/PopStateEvent-impl.js1775176449909193808 0
@@ -1389,7 +1430,9 @@
 83/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/browser/parser/xml.js1775176450041194588 0
 85/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/browser/parser/index.js1775176449722192702 0
 84/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/browser/parser/html.js1775176449595191952 0
+53/home/lab/creative-code-platform/dist/src/core/app.js1775194507897364258 0
 76/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/browser/parser1775176449981194233 1
+60/home/lab/creative-code-platform/dist/src/components/preview1775194507898364264 1
 71/home/lab/creative-code-platform/node_modules/playwright-core/lib/tools1775098710008658379 1
 69/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/browser1775176450053194659 1
 68/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/level21775176449935193961 1
@@ -1583,7 +1626,6 @@
 85/home/lab/creative-code-platform/node_modules/@parcel/runtime-js/src/helpers/.babelrc1775098709406654072 0
 91/home/lab/creative-code-platform/node_modules/@parcel/runtime-js/src/helpers/cacheLoader.js1775098709509654808 0
 76/home/lab/creative-code-platform/node_modules/@parcel/runtime-js/src/helpers1775098709751656540 1
-60/home/lab/creative-code-platform/dist/public.98e5dff8.js.map1775180724648964941 0
 68/home/lab/creative-code-platform/node_modules/@parcel/runtime-js/src1775098709724656347 1
 64/home/lab/creative-code-platform/node_modules/@parcel/runtime-js1775098709752656547 1
 80/home/lab/creative-code-platform/node_modules/pure-rand/lib/pure-rand-default.js1775098709796656862 0
@@ -1623,6 +1665,7 @@
 67/home/lab/creative-code-platform/node_modules/@parcel/cache/LICENSE1775098709367653792 0
 79/home/lab/creative-code-platform/node_modules/@parcel/utils/test/config.test.js1775098709620655603 0
 81/home/lab/creative-code-platform/node_modules/@parcel/utils/test/throttle.test.js1775098709852657263 0
+70/home/lab/creative-code-platform/dist/src/components/editor/editor.css1775194507898364264 0
 85/home/lab/creative-code-platform/node_modules/@babel/types/lib/comments/addComment.js1775098709810656962 0
 83/home/lab/creative-code-platform/node_modules/@parcel/utils/test/collection.test.js1775098709600655460 0
 85/home/lab/creative-code-platform/node_modules/@parcel/utils/test/PromiseQueue.test.js1775098709835657141 0
@@ -1680,6 +1723,7 @@
 86/home/lab/creative-code-platform/node_modules/@parcel/types-internal/lib/FilePath.d.ts1775098709664655918 0
 82/home/lab/creative-code-platform/node_modules/@parcel/types-internal/lib/Glob.d.ts1775098709671655968 0
 97/home/lab/creative-code-platform/node_modules/@parcel/types-internal/lib/DependencySpecifier.d.ts1775098709654655846 0
+74/home/lab/creative-code-platform/dist/src/modules/filesystem/filesystem.js1775194507897364258 0
 89/home/lab/creative-code-platform/node_modules/@parcel/types-internal/lib/PackageName.d.ts1775098709693656125 0
 88/home/lab/creative-code-platform/node_modules/@parcel/types-internal/lib/FileSystem.d.ts1775098709668655946 0
 92/home/lab/creative-code-platform/node_modules/@parcel/types-internal/lib/PackageManager.d.ts1775098709690656104 0
@@ -1758,7 +1802,7 @@
 94/home/lab/creative-code-platform/node_modules/@babel/helpers/lib/helpers/applyDecs2203R.js.map1775098709714656275 0
 73/home/lab/creative-code-platform/node_modules/@parcel/transformer-css/lib1775098709376653857 1
 91/home/lab/creative-code-platform/node_modules/@parcel/transformer-css/src/CSSTransformer.js1775098709493654694 0
-48/home/lab/creative-code-platform/dist/index.html1775180724609964787 0
+48/home/lab/creative-code-platform/dist/index.html1775196276998029028 0
 73/home/lab/creative-code-platform/node_modules/@parcel/transformer-css/src1775098709475654565 1
 69/home/lab/creative-code-platform/node_modules/@parcel/transformer-css1775098709493654694 1
 84/home/lab/creative-code-platform/node_modules/@parcel/optimizer-esbuild/package.json1775176520759480141 0
@@ -1873,6 +1917,7 @@
 84/home/lab/creative-code-platform/node_modules/@parcel/core/test/EntryRequest.test.js1775098709833657127 0
 89/home/lab/creative-code-platform/node_modules/@parcel/core/test/SymbolPropagation.test.js1775098709917657728 0
 77/home/lab/creative-code-platform/node_modules/@parcel/core/test/utils.test.js1775098709935657856 0
+85/home/lab/creative-code-platform/dist/src/components/git-status-bar/git-status-bar.js1775194507899364269 0
 63/home/lab/creative-code-platform/node_modules/@parcel/core/test1775098709934657849 1
 71/home/lab/creative-code-platform/node_modules/@parcel/core/package.json1775098709942657907 0
 86/home/lab/creative-code-platform/node_modules/@babel/plugin-syntax-bigint/package.json1775098709436654286 0
@@ -1979,6 +2024,7 @@
 81/home/lab/creative-code-platform/node_modules/@parcel/error-overlay/src/styles.js1775098709718656304 0
 80/home/lab/creative-code-platform/node_modules/@parcel/error-overlay/src/index.js1775098709669655953 0
 99/home/lab/creative-code-platform/node_modules/@parcel/error-overlay/src/components/HydrationDiff.js1775098709615655567 0
+69/home/lab/creative-code-platform/dist/src/components/modals/README.md1775194507898364264 0
 99/home/lab/creative-code-platform/node_modules/@parcel/error-overlay/src/components/NavigationBar.js1775098709682656046 0
 82/home/lab/creative-code-platform/node_modules/@parcel/error-overlay/src/components1775098709679656025 1
 71/home/lab/creative-code-platform/node_modules/@parcel/error-overlay/src1775098709716656290 1
@@ -2065,6 +2111,7 @@
 108/home/lab/creative-code-platform/node_modules/@parcel/source-map/parcel_sourcemap_wasm/dist-web/package.json1775098709702656190 0
 125/home/lab/creative-code-platform/node_modules/@parcel/source-map/parcel_sourcemap_wasm/dist-web/parcel_sourcemap_wasm_bg.wasm1775098709923657771 0
 95/home/lab/creative-code-platform/node_modules/@parcel/source-map/parcel_sourcemap_wasm/dist-web1775098709919657742 1
+80/home/lab/creative-code-platform/dist/src/components/modals/settings/settings.js1775194507898364264 0
 109/home/lab/creative-code-platform/node_modules/@parcel/source-map/parcel_sourcemap_wasm/dist-node/package.json1775098709699656168 0
 36/home/lab/creative-code-platform/src1775095588739717151 1
 126/home/lab/creative-code-platform/node_modules/@parcel/source-map/parcel_sourcemap_wasm/dist-node/parcel_sourcemap_wasm_bg.wasm1775098709918657735 0
@@ -2128,7 +2175,7 @@
 80/home/lab/creative-code-platform/node_modules/@parcel/workers/lib/core-worker.js1775098709626655646 0
 76/home/lab/creative-code-platform/node_modules/@parcel/workers/lib/backend.js1775098709423654193 0
 69/home/lab/creative-code-platform/node_modules/@parcel/workers/lib/web1775098709746656504 1
-56/home/lab/creative-code-platform/dist/public.1fcc916e.js1775176967586226042 0
+56/home/lab/creative-code-platform/dist/public.1fcc916e.js1775196236005805019 0
 74/home/lab/creative-code-platform/node_modules/@parcel/workers/lib/types.js1775098709735656426 0
 90/home/lab/creative-code-platform/node_modules/@parcel/workers/lib/process/ProcessWorker.js1775098709713656268 0
 89/home/lab/creative-code-platform/node_modules/@parcel/workers/lib/process/ProcessChild.js1775098709704656204 0
@@ -2210,6 +2257,7 @@
 122/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/pretty-format/build/index.d.ts1775176449644192241 0
 93/home/lab/creative-code-platform/node_modules/@babel/helpers/lib/helpers/applyDecs2305.js.map1775098709733656411 0
 77/home/lab/creative-code-platform/node_modules/caniuse-lite/data/regions/FM.js1775098709971658114 0
+68/home/lab/creative-code-platform/dist/src/components/modals/settings1775194507898364264 1
 104/home/lab/creative-code-platform/node_modules/@swc/helpers/_/_class_private_field_loose_key/package.json1775098709940657892 0
 84/home/lab/creative-code-platform/node_modules/cssstyle/lib/properties/borderStyle.js1775176449317190309 0
 91/home/lab/creative-code-platform/node_modules/playwright-core/lib/tools/backend/response.js1775098710060658751 0
@@ -2685,7 +2733,7 @@
 130/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/cjs/value/clean/index.js1775176450048194629 0
 126/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/cjs/syntax/parser.js1775176450086194854 0
 138/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/cjs/type/null/index.js1775176449740192809 0
-59/home/lab/creative-code-platform/dist/icon-512.977964c0.svg1775180724156962992 0
+59/home/lab/creative-code-platform/dist/icon-512.977964c0.svg1775196276444026001 0
 134/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/cjs/value/convert/index.d.ts1775176450283196018 0
 60/home/lab/creative-code-platform/node_modules/detect-newline1775098709434654272 1
 81/home/lab/creative-code-platform/node_modules/human-signals/build/src/core.js.map1775098709560655174 0
@@ -2790,6 +2838,7 @@
 134/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/cjs/parser/runtime/module.js1775176450077194801 0
 56/home/lab/creative-code-platform/node_modules/concat-map1775098709476654572 1
 124/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/cjs/parser/runtime1775176450308196166 1
+71/home/lab/creative-code-platform/dist/src/components/preview/preview.js1775194507898364264 0
 66/home/lab/creative-code-platform/.worktrees/brt-code-mvp/README.md1775150463976184859 0
 139/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/cjs/type/intersect/intersect.d.ts1775176450289196054 0
 133/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/cjs/type/registry/type.d.ts1775176450307196160 0
@@ -2879,6 +2928,7 @@
 95/home/lab/creative-code-platform/node_modules/@swc/helpers/src/_check_private_redeclaration.mjs1775098710023658486 0
 89/home/lab/creative-code-platform/node_modules/@babel/helpers/lib/helpers/inheritsLoose.js1775098709856657291 0
 101/home/lab/creative-code-platform/node_modules/globals/node_modules/type-fest/source/set-required.d.ts1775098709711656254 0
+62/home/lab/creative-code-platform/dist/src/components/file-tree1775194507898364264 1
 83/home/lab/creative-code-platform/node_modules/@parcel/source-map/dist/types.js.flow1775098709489654665 0
 135/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/cjs/type/indexed/indexed.d.ts1775176450287196042 0
 86/home/lab/creative-code-platform/node_modules/caniuse-lite/data/features/nav-timing.js1775098710039658600 0
@@ -3317,7 +3367,7 @@
 106/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/living/generated/CustomElementConstructor.js1775176449518191496 0
 100/home/lab/creative-code-platform/node_modules/jszip/node_modules/readable-stream/readable-browser.js1775098709632655689 0
 77/home/lab/creative-code-platform/node_modules/caniuse-lite/data/regions/BR.js1775098709807656941 0
-61/home/lab/creative-code-platform/dist/public.016b9879.css.map1775180724645964929 0
+61/home/lab/creative-code-platform/dist/public.016b9879.css.map1775196277012029105 0
 131/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/value/delta/delta.mjs1775176450123195072 0
 69/home/lab/creative-code-platform/node_modules/xmlchars/xml/1.1/ed2.js1775176449090188967 0
 133/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/value/delta/delta.d.mts1775176450193195486 0
@@ -3690,7 +3740,6 @@
 132/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/type/guard/index.d.mts1775176450207195569 0
 131/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/type/guard/type.d.mts1775176450244195788 0
 73/home/lab/creative-code-platform/node_modules/@swc/helpers/_/_ts_decorate1775098709999658315 1
-57/home/lab/creative-code-platform/dist/public.68d5addb.css1775176521593480117 0
 86/home/lab/creative-code-platform/node_modules/playwright-core/lib/client/playwright.js1775098710051658686 0
 82/home/lab/creative-code-platform/node_modules/jest-environment-node/build/index.js1775098709412654115 0
 134/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/type/symbol/symbol.d.mts1775176450241195770 0
@@ -4401,6 +4450,7 @@
 68/home/lab/creative-code-platform/node_modules/js-tokens/package.json1775098709362653757 0
 73/home/lab/creative-code-platform/node_modules/es-define-property/index.js1775098709428654229 0
 79/home/lab/creative-code-platform/node_modules/entities/dist/esm/encode.d.ts.map1775176449163189398 0
+59/home/lab/creative-code-platform/dist/src/modules/README.md1775194507898364264 0
 72/home/lab/creative-code-platform/node_modules/jest-config/build/color.js1775098709420654172 0
 92/home/lab/creative-code-platform/node_modules/micromatch/node_modules/picomatch/lib/parse.js1775098709505654780 0
 64/home/lab/creative-code-platform/node_modules/fill-range/LICENSE1775098709360653743 0
@@ -4935,6 +4985,7 @@
 72/home/lab/creative-code-platform/node_modules/@swc/helpers/_/_call_super1775098709915657713 1
 74/home/lab/creative-code-platform/.worktrees/brt-code-mvp/package-lock.json1775150463978184872 0
 95/home/lab/creative-code-platform/node_modules/@swc/helpers/src/_initializer_define_property.mjs1775098710035658572 0
+68/home/lab/creative-code-platform/dist/src/components/command-palette1775194507898364264 1
 74/home/lab/creative-code-platform/node_modules/brace-expansion/package.json1775098709407654079 0
 68/home/lab/creative-code-platform/node_modules/entities/src/encode.ts1775176449199189611 0
 77/home/lab/creative-code-platform/node_modules/@parcel/diagnostic/package.json1775098709555655138 0
@@ -5732,7 +5783,7 @@
 131/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/cjs/type/schema/schema.js1775176450097194919 0
 63/home/lab/creative-code-platform/node_modules/@bcoe/v8-coverage1775098709787656798 1
 76/home/lab/creative-code-platform/node_modules/@codemirror/lint/dist/index.js1775098709544655059 0
-48/home/lab/creative-code-platform/src/core/app.js1775016403752616518 0
+48/home/lab/creative-code-platform/src/core/app.js1775190888521323723 0
 98/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/living/generated/HTMLOListElement.js1775176449710192631 0
 73/home/lab/creative-code-platform/node_modules/create-jest/build/errors.js1775098709458654444 0
 82/home/lab/creative-code-platform/node_modules/lightningcss/node/composeVisitors.js1775098709642655760 0
@@ -6167,7 +6218,7 @@
 146/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/cjs/value/convert/convert.d.ts1775176450009194399 0
 94/home/lab/creative-code-platform/node_modules/pretty-format/node_modules/ansi-styles/readme.md1775098709448654372 0
 119/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/parser/package.json1775176450111195002 0
-37/home/lab/creative-code-platform/dist1775180724648964941 1
+37/home/lab/creative-code-platform/dist1775196277042029269 1
 95/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/living/nodes/DocumentType-impl.js1775176449529191562 0
 85/home/lab/creative-code-platform/node_modules/@swc/helpers/cjs/_wrap_native_super.cjs1775098709802656905 0
 90/home/lab/creative-code-platform/node_modules/@babel/helpers/lib/helpers/defineProperty.js1775098709845657213 0
@@ -6185,7 +6236,6 @@
 84/home/lab/creative-code-platform/node_modules/jsdom/lib/jsdom/living/helpers/json.js1775176449723192708 0
 68/home/lab/creative-code-platform/.worktrees/brt-code-mvp/src/modules1775150463988184936 1
 66/home/lab/creative-code-platform/node_modules/playwright/test.d.ts1775098709944657921 0
-61/home/lab/creative-code-platform/dist/public.56e1d57b.css.map1775179573934827733 0
 132/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/type/unsafe/unsafe.mjs1775176450184195433 0
 135/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/cjs/value/transform1775176450064194724 1
 138/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/value/transform/decode.d.mts1775176450193195486 0
@@ -6472,6 +6522,7 @@
 83/home/lab/creative-code-platform/coverage/lcov-report/src/components/export.js.html1775176480941377233 0
 132/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/cjs/value/guard/guard.d.ts1775176450261195888 0
 132/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/type/extract/index.mjs1775176450141195179 0
+75/home/lab/creative-code-platform/dist/src/components/file-tree/file-tree.js1775194507898364264 0
 77/home/lab/creative-code-platform/node_modules/istanbul-lib-coverage/README.md1775098709591655395 0
 70/home/lab/creative-code-platform/node_modules/jest-config/package.json1775098709680656032 0
 72/home/lab/creative-code-platform/node_modules/es-define-property/.github1775098709579655309 1
@@ -6677,6 +6728,7 @@
 84/home/lab/creative-code-platform/node_modules/entities/dist/commonjs/escape.d.ts.map1775176449168189428 0
 138/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/esm/type/type/json.mjs1775176449859193512 0
 66/home/lab/creative-code-platform/node_modules/sprintf-js/README.md1775098709408654086 0
+60/home/lab/creative-code-platform/dist/src/components/console1775194507898364264 1
 121/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/type/mapped1775176450230195705 1
 64/home/lab/creative-code-platform/node_modules/find-up/index.d.ts1775098709386653929 0
 87/home/lab/creative-code-platform/coverage/lcov-report/src/modules/filesystem/index.html1775176480960377345 0
@@ -7452,6 +7504,7 @@
 95/home/lab/creative-code-platform/node_modules/@babel/types/lib/validators/matchesPattern.js.map1775098709960658036 0
 107/home/lab/creative-code-platform/node_modules/caniuse-lite/data/features/cross-document-view-transitions.js1775098709855657284 0
 65/home/lab/creative-code-platform/node_modules/fs.realpath/LICENSE1775098709414654129 0
+57/home/lab/creative-code-platform/dist/public.173d9d80.css1775196236006805025 0
 103/home/lab/creative-code-platform/node_modules/node-releases/data/release-schedule/release-schedule.json1775098709554655131 0
 69/home/lab/creative-code-platform/node_modules/babel-plugin-jest-hoist1775098709436654286 1
 135/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/type/schema/anyschema.mjs1775176450113195013 0
@@ -8522,6 +8575,7 @@
 90/home/lab/creative-code-platform/node_modules/@babel/types/lib/builders/productions.js.map1775098709783656769 0
 128/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/cjs/type/sets/set.d.ts1775176450304196142 0
 67/home/lab/creative-code-platform/.worktrees/brt-code-mvp/.gitignore1775150463769183545 0
+44/home/lab/creative-code-platform/dist/styles1775194071599995413 1
 74/home/lab/creative-code-platform/node_modules/@lezer/css/test/selector.txt1775098709665655925 0
 74/home/lab/creative-code-platform/node_modules/jest-snapshot/build/index.js1775098709483654622 0
 151/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/cjs/type/readonly-optional/index.js1775176449747192850 0
@@ -8673,6 +8727,7 @@
 104/home/lab/creative-code-platform/node_modules/@swc/helpers/src/_ts_rewrite_relative_import_extension.mjs1775098710045658644 0
 73/home/lab/creative-code-platform/node_modules/typed-array-buffer/index.js1775098709429654236 0
 140/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/type/intrinsic/intrinsic.d.mts1775176450227195687 0
+61/home/lab/creative-code-platform/dist/public.173d9d80.css.map1775194678599293685 0
 131/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/value/guard/guard.mjs1775176450133195132 0
 134/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/cjs/type/intrinsic1775176450109194990 1
 93/home/lab/creative-code-platform/node_modules/@swc/helpers/esm/_ts_add_disposable_resource.js1775098709876657434 0
@@ -8979,6 +9034,7 @@
 68/home/lab/creative-code-platform/node_modules/@types/node/https.d.ts1775098709781656755 0
 119/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/cjs/type/sets1775176450303196137 1
 76/home/lab/creative-code-platform/node_modules/@types/babel__traverse/LICENSE1775098709361653750 0
+70/home/lab/creative-code-platform/dist/src/components/console/README.md1775194507898364264 0
 72/home/lab/creative-code-platform/node_modules/jest-validate/node_modules1775098701861600040 1
 88/home/lab/creative-code-platform/node_modules/playwright-core/lib/tools/backend/mouse.js1775098710041658615 0
 133/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/type/optional/index.mjs1775176450147195214 0
@@ -9467,6 +9523,7 @@
 92/home/lab/creative-code-platform/node_modules/caniuse-lite/data/features/link-rel-preload.js1775098710008658379 0
 80/home/lab/creative-code-platform/node_modules/caniuse-lite/data/features/json.js1775098710001658329 0
 78/home/lab/creative-code-platform/node_modules/@codemirror/search/dist/index.js1775098709563655195 0
+87/home/lab/creative-code-platform/dist/src/components/command-palette/command-palette.js1775194507898364264 0
 158/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/cjs/type/pick/pick-from-mapped-result.d.ts1775176450093194895 0
 95/home/lab/creative-code-platform/node_modules/caniuse-lite/data/features/css-optional-pseudo.js1775098709913657699 0
 68/home/lab/creative-code-platform/node_modules/@lezer/lr/package.json1775098709608655517 0
@@ -9618,7 +9675,7 @@
 136/home/lab/creative-code-platform/node_modules/jest-environment-jsdom/node_modules/@sinclair/typebox/build/esm/type/awaited/awaited.d.mts1775176450187195451 0
 83/home/lab/creative-code-platform/node_modules/caniuse-lite/data/features/pointer.js1775098710054658708 0
 86/home/lab/creative-code-platform/node_modules/caniuse-lite/data/features/hashchange.js1775098709983658200 0
-41/home/lab/creative-code-platform/build.sh1775016660232097544 0
+41/home/lab/creative-code-platform/build.sh1775193897312053560 0
 66/home/lab/creative-code-platform/node_modules/weak-lru-cache/tests1775098709494654701 1
 71/home/lab/creative-code-platform/node_modules/dotenv-expand/lib/main.js1775098709445654351 0
 89/home/lab/creative-code-platform/node_modules/caniuse-lite/data/features/css-gradients.js1775098709894657563 0
@@ -10059,6 +10116,7 @@
 56/home/lab/creative-code-platform/node_modules/nullthrows1775098709469654522 1
 77/home/lab/creative-code-platform/node_modules/jest-runner/build/testWorker.js1775098709501654751 0
 131/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/esm/type/static1775176449990194287 1
+73/home/lab/creative-code-platform/dist/src/modules/filesystem/package.json1775194507897364258 0
 70/home/lab/creative-code-platform/node_modules/nullthrows/nullthrows.js1775098709446654358 0
 136/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/esm/type/not/not.mjs1775176449864193542 0
 72/home/lab/creative-code-platform/node_modules/nullthrows/nullthrows.d.ts1775098709424654201 0
@@ -11118,7 +11176,6 @@
 139/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/esm/value/hash/hash.mjs1775176449801193169 0
 79/home/lab/creative-code-platform/node_modules/playwright/lib/worker/testInfo.js1775098709909657670 0
 75/home/lab/creative-code-platform/node_modules/playwright/lib/worker/util.js1775098709929657813 0
-56/home/lab/creative-code-platform/dist/public.4171d3a1.js1775176521593480117 0
 78/home/lab/creative-code-platform/node_modules/@swc/helpers/_/_class_call_check1775098709926657792 1
 81/home/lab/creative-code-platform/node_modules/@sinclair/typebox/errors/index.d.ts1775098709753656554 0
 81/home/lab/creative-code-platform/node_modules/playwright/lib/worker/workerMain.js1775098709939657885 0
@@ -11156,7 +11213,7 @@
 91/home/lab/creative-code-platform/node_modules/playwright/lib/agents/copilot-setup-steps.yml1775098709959658028 0
 82/home/lab/creative-code-platform/node_modules/playwright/lib/agents/agentParser.js1775098709488654658 0
 102/home/lab/creative-code-platform/node_modules/playwright/lib/agents/playwright-test-generator.agent.md1775098709940657892 0
-64/home/lab/creative-code-platform/dist/isomorphic-git.6ef1bede.js1775180724609964787 0
+64/home/lab/creative-code-platform/dist/isomorphic-git.6ef1bede.js1775196276999029034 0
 77/home/lab/creative-code-platform/node_modules/playwright/lib/runner/rebase.js1775098709892657549 0
 158/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/cjs/type/keyof/keyof-property-entries.d.ts1775176450074194783 0
 67/home/lab/creative-code-platform/node_modules/yargs/locales/be.json1775098709729656383 0
@@ -11221,6 +11278,7 @@
 70/home/lab/creative-code-platform/node_modules/is-core-module/.eslintrc1775098709360653743 0
 142/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/esm/type/extract/index.mjs1775176449809193216 0
 80/home/lab/creative-code-platform/node_modules/resolve/test/node-modules-paths.js1775098709836657148 0
+59/home/lab/creative-code-platform/dist/src/core/package.json1775194507897364258 0
 60/home/lab/creative-code-platform/node_modules/tr46/README.md1775176449113189103 0
 72/home/lab/creative-code-platform/node_modules/jest-mock/build/index.d.ts1775098709524654916 0
 78/home/lab/creative-code-platform/node_modules/@sinclair/typebox/value/equal.js1775098709638655731 0
@@ -11413,6 +11471,7 @@
 138/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/esm/type/pick/pick.mjs1775176449871193583 0
 107/home/lab/creative-code-platform/node_modules/@babel/types/lib/builders/typescript/createTSUnionType.js.map1775098709793656840 0
 157/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/esm/type/pick/pick-from-mapped-result.mjs1775176449869193571 0
+64/home/lab/creative-code-platform/dist/src/modules/git-operations1775194507898364264 1
 77/home/lab/creative-code-platform/node_modules/prompts/dist/dateparts/index.js1775098709714656275 0
 136/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/esm/type/any/any.mjs1775176449781193051 0
 139/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/esm/type/pick/index.mjs1775176449820193282 0
@@ -11697,7 +11756,7 @@
 160/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/esm/type/extends/extends-from-mapped-key.mjs1775176449796193140 0
 85/home/lab/creative-code-platform/node_modules/playwright-core/lib/client/harRouter.js1775098709984658207 0
 142/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/esm/type/extends/index.mjs1775176449809193216 0
-70/home/lab/creative-code-platform/src/components/file-tree/file-tree.js1775180452428698122 0
+70/home/lab/creative-code-platform/src/components/file-tree/file-tree.js1775193721800109275 0
 90/home/lab/creative-code-platform/node_modules/playwright-core/lib/tools/backend/runCode.js1775098710060658751 0
 163/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/esm/type/indexed/indexed-from-mapped-result.mjs1775176449854193483 0
 73/home/lab/creative-code-platform/node_modules/undici-types/mock-pool.d.ts1775098709692656118 0
@@ -12063,7 +12122,7 @@
 80/home/lab/creative-code-platform/node_modules/jszip/node_modules/readable-stream1775098709691656111 1
 139/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/cjs/type/error/index.js1775176449736192785 0
 141/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/cjs/type/error/error.d.ts1775176450013194422 0
-47/home/lab/creative-code-platform/dist/sw.js.map1775180724070962651 0
+47/home/lab/creative-code-platform/dist/sw.js.map1775196276446026012 0
 67/home/lab/creative-code-platform/node_modules/jest-cli/package.json1775098709563655195 0
 130/home/lab/creative-code-platform/node_modules/@jest/environment-jsdom-abstract/node_modules/@sinclair/typebox/build/cjs/type/const1775176450026194499 1
 77/home/lab/creative-code-platform/node_modules/sprintf-js/dist/sprintf.min.map1775098709581655324 0
@@ -12676,6 +12735,7 @@
 106/home/lab/creative-code-platform/node_modules/caniuse-lite/data/features/img-naturalwidth-naturalheight.js1775098709990658250 0
 77/home/lab/creative-code-platform/node_modules/yargs-parser/build/lib/index.js1775098709489654665 0
 84/home/lab/creative-code-platform/node_modules/yargs-parser/build/lib/string-utils.js1775098709520654887 0
+54/home/lab/creative-code-platform/dist/src/modules/sync1775194507898364264 1
 84/home/lab/creative-code-platform/node_modules/yargs-parser/build/lib/yargs-parser.js1775098709594655417 0
 74/home/lab/creative-code-platform/node_modules/yargs-parser/build/index.cjs1775098709427654222 0
 70/home/lab/creative-code-platform/node_modules/yargs-parser/LICENSE.txt1775098709646655789 0
@@ -12921,6 +12981,7 @@
 97/home/lab/creative-code-platform/node_modules/lmdb/dependencies/lmdb/libraries/liblmdb/mdb_stat.c1775098709791656826 0
 86/home/lab/creative-code-platform/node_modules/@parcel/core/lib/requests/PathRequest.js1775098709893657556 0
 81/home/lab/creative-code-platform/node_modules/msgpackr/dist/index-no-eval.cjs.map1775098709767656654 0
+56/home/lab/creative-code-platform/dist/src/core/events.js1775194507897364258 0
 72/home/lab/creative-code-platform/node_modules/msgpackr/dist/index.min.js1775098709696656147 0
 93/home/lab/creative-code-platform/node_modules/jszip/node_modules/readable-stream/package.json1775098709665655925 0
 87/home/lab/creative-code-platform/node_modules/@parcel/packager-wasm/lib/WasmPackager.js1775098709493654694 0
@@ -13275,7 +13336,7 @@
 66/home/lab/creative-code-platform/node_modules/cross-spawn/index.js1775098709479654594 0
 61/home/lab/creative-code-platform/node_modules/cross-spawn/lib1775098709480654601 1
 71/home/lab/creative-code-platform/node_modules/cross-spawn/lib/enoent.js1775098709413654122 0
-61/home/lab/creative-code-platform/dist/public.6441dde9.css.map1775176967527225868 0
+61/home/lab/creative-code-platform/dist/public.6441dde9.css.map1775194678606293723 0
 89/home/lab/creative-code-platform/node_modules/playwright/lib/reporters/versions/blobV1.js1775098709800656891 0
 66/home/lab/creative-code-platform/node_modules/cross-spawn/lib/util1775098709512654830 1
 70/home/lab/creative-code-platform/node_modules/cross-spawn/package.json1775098709538655016 0
@@ -13330,7 +13391,7 @@
 94/home/lab/creative-code-platform/node_modules/playwright-core/lib/server/macEditingCommands.js1775098710028658522 0
 73/home/lab/creative-code-platform/node_modules/weak-lru-cache/package.json1775098709523654909 0
 75/home/lab/creative-code-platform/node_modules/weak-lru-cache/LRFUExpirer.js1775098709477654580 0
-57/home/lab/creative-code-platform/dist/public.6441dde9.css1775176967526225865 0
+57/home/lab/creative-code-platform/dist/public.6441dde9.css1775196236007805030 0
 107/home/lab/creative-code-platform/node_modules/@parcel/package-manager/test/getCurrentPackageManager.test.js1775098709468654515 0
 79/home/lab/creative-code-platform/node_modules/weak-lru-cache/tests/benchmark.js1775098709433654265 0
 74/home/lab/creative-code-platform/node_modules/weak-lru-cache/tests/test.js1775098709510654816 0
@@ -13367,6 +13428,7 @@
 74/home/lab/creative-code-platform/node_modules/jest-util/build/pluralize.js1775098709634655703 0
 87/home/lab/creative-code-platform/node_modules/@babel/core/node_modules/semver/range.bnf1775098709398654015 0
 72/home/lab/creative-code-platform/node_modules/jest-util/build/index.d.ts1775098709677656011 0
+69/home/lab/creative-code-platform/dist/src/components/editor/README.md1775194507898364264 0
 74/home/lab/creative-code-platform/node_modules/jest-util/build/isPromise.js1775098709629655667 0
 74/home/lab/creative-code-platform/node_modules/commander/typings/index.d.ts1775098709676656004 0
 71/home/lab/creative-code-platform/node_modules/prompts/lib/util/clear.js1775098709628655660 0

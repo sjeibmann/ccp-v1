@@ -449,9 +449,21 @@ const FileTree = {
     });
 
     events.on('project:loaded', (event) => {
-      const { project } = event.detail;
-      this.currentDirectory = project.directory;
-      this.listFiles();
+      const { project, demo } = event.detail;
+      if (demo) {
+        // Handle demo project - create virtual file tree
+        console.log('[FileTree] Loading demo project files');
+        this.files = project.files.map(filename => ({
+          name: filename,
+          type: 'file',
+          path: filename,
+          isDemo: true
+        }));
+        this.render();
+      } else {
+        this.currentDirectory = project.directory;
+        this.listFiles();
+      }
     });
 
     events.on('editor:newFile', () => {

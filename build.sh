@@ -12,9 +12,15 @@ cp -r public/* dist/
 echo "Minifying CSS..."
 cat src/styles/main.css | sed '/\/\*[^*]*\*+[^/]*\//d' | sed 's/  //g' > dist/styles/main.min.css
 
-# Compress HTML
+# Compress HTML - preserve structure, only remove comments and excess whitespace
 echo "Compressing HTML..."
-cat public/index.html | sed '/^[[:space:]]*$/d' | sed 's/  //g' > dist/index.min.html
+cat public/index.html | \
+  sed 's/<!--[^>]*-->//g' | \
+  sed 's/  / /g' | \
+  tr '\n' ' ' | \
+  sed 's/> </></g' | \
+  sed 's/  */ /g' \
+  > dist/index.html
 
 # Copy JS files
 cp src/core/*.js dist/core/

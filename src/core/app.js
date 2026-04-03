@@ -45,17 +45,22 @@ class AppController {
   async initialize() {
     if (this.initialized) return;
     
-    console.log('Initializing Creative Code Platform...');
+    console.log('[DEBUG] Initializing Creative Code Platform...');
+    console.log(`[DEBUG] Total modules registered: ${this.modules.size}`);
     
     // Initialize modules
     for (const [name, module] of this.modules) {
+      console.log(`[DEBUG] Checking module: ${name}`);
       if (typeof module.init === 'function') {
         try {
+          console.log(`[DEBUG] Initializing module: ${name}`);
           await module.init();
-          console.log(`Module "${name}" initialized`);
+          console.log(`[DEBUG] Module "${name}" initialized successfully`);
         } catch (error) {
-          console.error(`Failed to initialize module "${name}":`, error);
+          console.error(`[DEBUG] Failed to initialize module "${name}":`, error);
         }
+      } else {
+        console.log(`[DEBUG] Module "${name}" has no init function`);
       }
     }
     
@@ -65,14 +70,14 @@ class AppController {
     // Dispatch initialization event
     events.dispatch('app:ready');
     
-    console.log('Creative Code Platform is ready');
+    console.log('[DEBUG] Creative Code Platform is ready');
   }
 
   /**
    * Start the application
    */
-  start() {
-    console.log('Starting Creative Code Platform...');
+  async start() {
+    console.log('[DEBUG] Starting Creative Code Platform...');
     
     // Initialize state with default values
     this.defaultState();
@@ -81,7 +86,9 @@ class AppController {
     router.parse(window.location.hash.replace('#', ''));
     
     // Initialize all modules
-    this.initialize();
+    await this.initialize();
+    
+    console.log('[DEBUG] App.start() complete');
   }
 
   /**

@@ -97,31 +97,37 @@ const ConsolePanel = {
     const consoleTabs = document.querySelectorAll('.console-tab');
     consoleTabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        consoleTabs.forEach(t => t.classList.remove('active'));
+        console.log('[DEBUG] Console tab clicked:', tab.dataset.console);
+        consoleTabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
         tab.classList.add('active');
-        console.log(`Console tab changed to: ${tab.dataset.console}`);
+        tab.setAttribute('aria-selected', 'true');
+        
+        const tabName = tab.dataset.console;
+        console.log('[DEBUG] Switching to console tab:', tabName);
+        
+        // Dispatch event for other components
+        events.dispatch('console:tabChanged', { tab: tabName });
+        
+        // Update visible content based on tab
+        this.switchConsoleTab(tabName);
       });
     });
     
-    // Console input
-    if (this.input) {
-      this.input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          const command = this.input.value;
-          console.log('Console command:', command);
-          this.input.value = '';
-          this.addMessage('info', `Command: ${command}`);
-        }
-      });
-    }
-    
-    // Listen for messages from preview iframe
-    window.addEventListener('message', (event) => {
-      this.handleIframeMessage(event);
-    });
-    
-    // Setup filter buttons
-    this.setupFilterButtons();
+    console.log('[DEBUG] Console setup complete');
+  },
+  
+  /**
+   * Switch console tab view
+   * @param {string} tabName - Tab name (console, terminal, output)
+   */
+  switchConsoleTab(tabName) {
+    console.log('[DEBUG] Switching console tab to:', tabName);
+    // For now, just log. In future, this would switch between
+    // console logs, terminal, and build output views
+    this.addMessage('info', `Switched to ${tabName} tab`);
   },
   
   /**
