@@ -20,3 +20,9 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 .worktrees/
+
+# Playwright visual regression tests
+tests/visual/screenshots/
+playwright-report/
+test-results/
+playwright/.cache/

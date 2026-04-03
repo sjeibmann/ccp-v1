@@ -1,7 +1,7 @@
 /**
  * Command Palette Component - Quick access to commands and files
  */
-import { get, set } from '../../core/state.js';
+import { get, set, subscribe } from '../../core/state.js';
 import { events } from '../../core/events.js';
 
 const CommandPalette = {
@@ -34,6 +34,11 @@ const CommandPalette = {
     // Setup event listeners
     this.setupEventListeners();
     
+    // Subscribe to auth changes
+    subscribe('github.authenticated', () => {
+      this.refreshCommands();
+    });
+    
     console.log('CommandPalette component initialized');
   },
   
@@ -41,6 +46,9 @@ const CommandPalette = {
    * Setup available commands
    */
   setupCommands() {
+    const isAuthenticated = get('github.authenticated') || false;
+    const user = get('github.user');
+    
     this.commands = [
       {
         name: 'New Project',
@@ -88,11 +96,62 @@ const CommandPalette = {
         action: 'export-zip'
       },
       {
+        name: isAuthenticated ? `GitHub: ${user?.login || 'Connected'}` : 'Connect to GitHub',
+        shortcut: '',
+        action: isAuthenticated ? 'github:logout' : 'github:authenticate',
+        category: 'github'
+      },
+      {
+        name: 'Git: Initialize Repository',
+        shortcut: '',
+        action: 'git:init',
+        category: 'git'
+      },
+      {
+        name: 'Git: Commit Changes',
+        shortcut: '',
+        action: 'git:commit',
+        category: 'git'
+      },
+      {
+        name: 'Git: Push to GitHub',
+        shortcut: '',
+        action: 'git:push',
+        category: 'git'
+      },
+      {
+        name: 'Git: Pull from GitHub',
+        shortcut: '',
+        action: 'git:pull',
+        category: 'git'
+      },
+      {
+        name: 'Git: Status',
+        shortcut: '',
+        action: 'git:status',
+        category: 'git'
+      },
+      {
         name: 'Search Commands',
         shortcut: 'Ctrl/Cmd+P',
         action: 'open-command-palette'
       }
     ];
+    
+    // Filter out git commands if not authenticated
+    if (!isAuthenticated) {
+      this.commands = this.commands.filter(cmd => !cmd.category || cmd.category !== 'git');
+    }
+  },
+  
+  /**
+   * Refresh commands (call when auth state changes)
+   */
+  refreshCommands() {
+    this.setupCommands();
+    if (this.isOpen) {
+      this.filterCommands();
+    }
   },
   
   /**
@@ -143,6 +202,15 @@ const CommandPalette = {
     events.on('commandPalette:close', () => {
       this.close();
     });
+    
+    // Refresh commands when auth state changes
+    events.on('github:authenticated', () => {
+      this.refreshCommands();
+    });
+    
+    events.on('github:logout', () => {
+      this.refreshCommands();
+    });
   },
   
   /**
@@ -151,6 +219,9 @@ const CommandPalette = {
   open() {
     this.isOpen = true;
     this.currentSelection = 0;
+    
+    // Refresh commands in case auth state changed
+    this.setupCommands();
     
     this.palette.classList.remove('hidden');
     this.input.value = '';
@@ -238,35 +309,44 @@ const CommandPalette = {
   createResultItem(command, index) {
     const li = document.createElement('li');
     li.className = 'palette-result';
+    li.setAttribute('role', 'option');
+    li.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+    li.setAttribute('tabindex', '-1');
     if (index === 0) li.classList.add('active');
-    
-    // Simple icon based on command
+
+    // Determine icon based on command
     let icon = '⚡';
     if (command.name.includes('Project')) icon = '📁';
     if (command.name.includes('Settings')) icon = '⚙️';
     if (command.name.includes('Export')) icon = '📦';
     if (command.name.includes('Preview')) icon = '👁️';
-    
+    if (command.name.includes('GitHub')) icon = '👤';
+    if (command.name.includes('Connect')) icon = '🔗';
+    if (command.name.includes('Git:')) icon = '🌿';
+    if (command.category === 'github') icon = command.name.includes('Disconnect') ? '🔓' : '👤';
+    if (command.category === 'git') icon = '🌿';
+
     li.innerHTML = `
-      <span class="icon">${icon}</span>
+      <span class="icon" aria-hidden="true">${icon}</span>
       <span class="label">${command.name}</span>
       <span class="shortcut">${command.shortcut}</span>
     `;
-    
+
     // Click to select
     li.addEventListener('click', () => {
       this.currentSelection = index;
       this.select();
     });
-    
+
     // Mouse enter to update selection
     li.addEventListener('mouseenter', () => {
       this.currentSelection = index;
       document.querySelectorAll('.palette-result').forEach((item, i) => {
         item.classList.toggle('active', i === index);
+        item.setAttribute('aria-selected', i === index ? 'true' : 'false');
       });
     });
-    
+
     this.results.appendChild(li);
   },
   
@@ -310,7 +390,7 @@ const CommandPalette = {
    * Check if palette is open
    * @returns {boolean} Whether open
    */
-  isOpen() {
+  isOpenState() {
     return this.isOpen;
   }
 };

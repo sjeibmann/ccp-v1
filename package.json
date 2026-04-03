@@ -7,7 +7,11 @@
     "start": "parcel public/index.html",
     "build": "parcel build public/index.html --dist-dir dist",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots",
+    "test:visual:headed": "playwright test --headed",
+    "test:visual:debug": "playwright test --debug"
   },
   "keywords": [
     "creative-coding",
@@ -26,6 +30,7 @@
     "@codemirror/language": "^6.12.3",
     "@codemirror/state": "^6.6.0",
     "@codemirror/view": "^6.6.0",
+    "@isomorphic-git/lightning-fs": "^4.6.2",
     "codemirror": "^6.0.0",
     "isomorphic-git": "^1.0.0",
     "jszip": "^3.10.0"

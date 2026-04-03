@@ -97,6 +97,140 @@ const Preview = {
   },
   
   /**
+   * Get error capture script to inject into iframe
+   * @returns {string} Error capture script
+   */
+  getErrorCaptureScript() {
+    return `
+      <script>
+        (function() {
+          // Store original console methods
+          const originalLog = console.log;
+          const originalWarn = console.warn;
+          const originalError = console.error;
+          const originalInfo = console.info;
+          const originalDebug = console.debug;
+          
+          // Helper to serialize arguments
+          function serializeArgs(args) {
+            return args.map(arg => {
+              if (arg === null) return 'null';
+              if (arg === undefined) return 'undefined';
+              if (typeof arg === 'object') {
+                try {
+                  return JSON.stringify(arg);
+                } catch (e) {
+                  return '[Circular/Object]';
+                }
+              }
+              return String(arg);
+            });
+          }
+          
+          // Override console.log
+          console.log = function(...args) {
+            parent.postMessage({ 
+              type: 'console', 
+              level: 'log', 
+              args: serializeArgs(args),
+              timestamp: new Date().toISOString()
+            }, '*');
+            originalLog.apply(console, args);
+          };
+          
+          // Override console.warn
+          console.warn = function(...args) {
+            parent.postMessage({ 
+              type: 'console', 
+              level: 'warn', 
+              args: serializeArgs(args),
+              timestamp: new Date().toISOString()
+            }, '*');
+            originalWarn.apply(console, args);
+          };
+          
+          // Override console.error
+          console.error = function(...args) {
+            parent.postMessage({ 
+              type: 'console', 
+              level: 'error', 
+              args: serializeArgs(args),
+              timestamp: new Date().toISOString()
+            }, '*');
+            originalError.apply(console, args);
+          };
+          
+          // Override console.info
+          console.info = function(...args) {
+            parent.postMessage({ 
+              type: 'console', 
+              level: 'info', 
+              args: serializeArgs(args),
+              timestamp: new Date().toISOString()
+            }, '*');
+            originalInfo.apply(console, args);
+          };
+          
+          // Override console.debug
+          console.debug = function(...args) {
+            parent.postMessage({ 
+              type: 'console', 
+              level: 'debug', 
+              args: serializeArgs(args),
+              timestamp: new Date().toISOString()
+            }, '*');
+            originalDebug.apply(console, args);
+          };
+          
+          // Capture uncaught exceptions
+          window.onerror = function(msg, url, line, col, error) {
+            parent.postMessage({ 
+              type: 'error', 
+              message: String(msg), 
+              url: url || 'unknown',
+              line: line || 0,
+              col: col || 0,
+              stack: error && error.stack ? error.stack : '',
+              timestamp: new Date().toISOString()
+            }, '*');
+            return false;
+          };
+          
+          // Capture unhandled promise rejections
+          window.addEventListener('unhandledrejection', function(event) {
+            const reason = event.reason;
+            let message = 'Unhandled Promise Rejection';
+            let stack = '';
+            
+            if (reason instanceof Error) {
+              message = reason.message;
+              stack = reason.stack || '';
+            } else if (typeof reason === 'string') {
+              message = reason;
+            } else if (reason !== null && reason !== undefined) {
+              try {
+                message = String(reason);
+              } catch (e) {
+                message = '[Object]';
+              }
+            }
+            
+            parent.postMessage({ 
+              type: 'error', 
+              message: message,
+              url: 'promise',
+              line: 0,
+              col: 0,
+              stack: stack,
+              timestamp: new Date().toISOString()
+            }, '*');
+          });
+        })();
+      </script>
+    `;
+  },
+
+  /**
    * Run the code in the preview
    */
   runCode() {
@@ -111,12 +245,15 @@ const Preview = {
     // Update iframe content
     if (this.iframeWindow && this.iframeWindow.document) {
       const doc = this.iframeWindow.document;
+      const errorCaptureScript = this.getErrorCaptureScript();
+      
       const content = `
         <!DOCTYPE html>
         <html lang="en">
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          ${errorCaptureScript}
           <style>
             ${css || ''}
           </style>

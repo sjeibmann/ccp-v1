@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub OAuth Callback</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+      background-color: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    
+    .container {
+      text-align: center;
+      max-width: 400px;
+    }
+    
+    .icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 24px;
+    }
+    
+    .icon svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #c9a961;
+    }
+    
+    .message {
+      font-size: 16px;
+      color: #8b949e;
+      margin-bottom: 24px;
+    }
+    
+    .error {
+      color: #ff7b72;
+    }
+    
+    .success {
+      color: #7ee787;
+    }
+    
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #30363d;
+      border-top-color: #c9a961;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 24px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .btn {
+      padding: 12px 24px;
+      background-color: #c9a961;
+      border: none;
+      border-radius: 6px;
+      color: #0d1117;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn:hover {
+      background-color: #e3c472;
+    }
+    
+    .btn.secondary {
+      background-color: #21262d;
+      color: #e6edf3;
+      margin-left: 12px;
+    }
+    
+    .btn.secondary:hover {
+      background-color: #30363d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="loading" class="content">
+      <div class="spinner"></div>
+      <h1 class="title">Authenticating...</h1>
+      <p class="message">Please wait while we complete the GitHub authentication.</p>
+    </div>
+    
+    <div id="success" class="content" style="display: none;">
+      <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#7ee787" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h1 class="title success">Authentication Successful!</h1>
+      <p class="message">You have successfully connected your GitHub account. This window will close automatically.</p>
+    </div>
+    
+    <div id="error" class="content" style="display: none;">
+      <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ff7b72" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="15" y1="9" x2="9" y2="15"></line>
+          <line x1="9" y1="9" x2="15" y2="15"></line>
+        </svg>
+      </div>
+      <h1 class="title error">Authentication Failed</h1>
+      <p class="message" id="error-message">An error occurred during authentication.</p>
+      <div style="margin-top: 24px;">
+        <button class="btn" onclick="retryAuth()">Try Again</button>
+        <button class="btn secondary" onclick="closeWindow()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Parse URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const state = params.get('state');
+    const error = params.get('error');
+    const errorDescription = params.get('error_description');
+    
+    // DOM elements
+    const loadingEl = document.getElementById('loading');
+    const successEl = document.getElementById('success');
+    const errorEl = document.getElementById('error');
+    const errorMessageEl = document.getElementById('error-message');
+    
+    function showLoading() {
+      loadingEl.style.display = 'block';
+      successEl.style.display = 'none';
+      errorEl.style.display = 'none';
+    }
+    
+    function showSuccess() {
+      loadingEl.style.display = 'none';
+      successEl.style.display = 'block';
+      errorEl.style.display = 'none';
+      
+      // Auto-close after 2 seconds
+      setTimeout(() => {
+        closeWindow();
+      }, 2000);
+    }
+    
+    function showError(message) {
+      loadingEl.style.display = 'none';
+      successEl.style.display = 'none';
+      errorEl.style.display = 'block';
+      errorMessageEl.textContent = message;
+    }
+    
+    function closeWindow() {
+      window.close();
+    }
+    
+    function retryAuth() {
+      // Send message to parent to retry
+      if (window.opener) {
+        window.opener.postMessage({ type: 'github:oauth:retry' }, window.location.origin);
+      }
+      closeWindow();
+    }
+    
+    // Handle OAuth response
+    if (error) {
+      // OAuth error
+      showError(errorDescription || error);
+      if (window.opener) {
+        window.opener.postMessage({ 
+          type: 'github:oauth:error', 
+          error: errorDescription || error 
+        }, window.location.origin);
+      }
+    } else if (code && state) {
+      // Success - send code to parent
+      if (window.opener) {
+        window.opener.postMessage({ 
+          type: 'github:oauth:success', 
+          code: code,
+          state: state
+        }, window.location.origin);
+        showSuccess();
+      } else {
+        showError('This page must be opened from the main application.');
+      }
+    } else {
+      // Missing parameters
+      showError('Invalid OAuth callback. Missing authorization code.');
+    }
+  </script>
+</body>
+</html>

@@ -5,53 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BRT CODE - Creative Code Platform</title>
   <meta name="description" content="A distraction-free creative coding IDE">
-  
+
   <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#0d1117">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+  <!-- Skip Link for Keyboard Navigation -->
+  <a href="#workspace" class="skip-link">Skip to main content</a>
+
   <div id="app" class="app">
     <!-- 1. Icon Sidebar (Leftmost, 48px) -->
-    <nav id="icon-sidebar" class="icon-sidebar" aria-label="Navigation">
-      <div class="icon-sidebar-top">
-        <button class="icon-btn active" data-action="files" title="Files">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <nav id="icon-sidebar" class="icon-sidebar" aria-label="Main Navigation">
+      <div class="icon-sidebar-top" role="toolbar" aria-label="Primary Tools">
+        <button class="icon-btn active" data-action="files" title="Files" aria-label="Open File Explorer" aria-pressed="true" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
           </svg>
+          <span class="sr-only">Files</span>
         </button>
-        <button class="icon-btn" data-action="search" title="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <button class="icon-btn" data-action="search" title="Search" aria-label="Open Search" aria-pressed="false" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
+          <span class="sr-only">Search</span>
         </button>
-        <button class="icon-btn" data-action="git" title="Git">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <button class="icon-btn" data-action="git" title="Git" aria-label="Open Git Panel" aria-pressed="false" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="6" y1="12" x2="18" y2="12"></line>
           </svg>
+          <span class="sr-only">Git</span>
         </button>
-        <button class="icon-btn" data-action="extensions" title="Extensions">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <button class="icon-btn" data-action="extensions" title="Extensions" aria-label="Open Extensions" aria-pressed="false" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
             <polyline points="2 17 12 22 22 17"></polyline>
             <polyline points="2 12 12 17 22 12"></polyline>
           </svg>
+          <span class="sr-only">Extensions</span>
         </button>
       </div>
-      <div class="icon-sidebar-bottom">
-        <button class="icon-btn" data-action="settings" title="Settings">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <div class="icon-sidebar-bottom" role="toolbar" aria-label="Secondary Tools">
+        <button class="icon-btn" data-action="settings" title="Settings" aria-label="Open Settings" aria-pressed="false" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="3"></circle>
             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
           </svg>
+          <span class="sr-only">Settings</span>
         </button>
-        <button class="icon-btn" data-action="user" title="Account">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <button class="icon-btn" data-action="user" title="Account" aria-label="Open Account" aria-pressed="false" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
+          <span class="sr-only">Account</span>
         </button>
       </div>
     </nav>
@@ -59,9 +68,9 @@
     <!-- 2. File Sidebar (File Tree Panel, 240px) -->
     <aside id="file-sidebar" class="file-sidebar" aria-label="File Explorer">
       <header class="file-sidebar-header">
-        <span class="title" data-action="toggle-file-tree">FILE TREE</span>
-        <button class="header-btn" title="More Actions">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <span class="title" data-action="toggle-file-tree" role="button" tabindex="0">FILE TREE</span>
+        <button class="header-btn" title="More Actions" aria-label="More Actions" aria-haspopup="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="1"></circle>
             <circle cx="12" cy="5" r="1"></circle>
             <circle cx="12" cy="19" r="1"></circle>
@@ -69,18 +78,18 @@
         </button>
       </header>
       <div id="file-tree-wrapper" class="file-tree-wrapper">
-        <ul id="file-tree" class="file-tree" role="tree"></ul>
+        <ul id="file-tree" class="file-tree" role="tree" aria-label="Project Files"></ul>
       </div>
     </aside>
 
     <!-- 3. Main Workspace (Editor + Preview) -->
-    <main id="workspace" class="workspace">
+    <main id="workspace" class="workspace" role="main" aria-label="Main Workspace">
       <!-- Editor Section -->
       <section id="editor" class="editor" aria-label="Code Editor">
         <header class="editor-header">
-          <div class="tabs" role="tablist">
-            <button class="tab active" data-tab="index.html" role="tab">
-              <span class="file-icon icon-js" title="JavaScript">
+          <div class="tabs" role="tablist" aria-label="Open Files">
+            <button class="tab active" data-tab="index.html" role="tab" aria-selected="true" aria-controls="editor-container" tabindex="0">
+              <span class="file-icon icon-js" aria-hidden="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="16 18 22 12 16 6 14 8 10 4 10 10 14 12 16 18"></polygon>
                   <line x1="2" y1="12" x2="14" y2="12"></line>
@@ -88,10 +97,10 @@
                 </svg>
               </span>
               <span class="tab-name">index.html</span>
-              <button class="tab-close" title="Close Tab" data-tab="index.html">×</button>
+              <button class="tab-close" title="Close Tab" data-tab="index.html" aria-label="Close index.html tab" tabindex="-1">×</button>
             </button>
-            <button class="tab" data-tab="style.css" role="tab">
-              <span class="file-icon icon-css" title="CSS">
+            <button class="tab" data-tab="style.css" role="tab" aria-selected="false" aria-controls="editor-container" tabindex="-1">
+              <span class="file-icon icon-css" aria-hidden="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M4 10a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2H4z"></path>
                   <path d="M12 10v4"></path>
@@ -100,10 +109,10 @@
                 </svg>
               </span>
               <span class="tab-name">style.css</span>
-              <button class="tab-close" title="Close Tab" data-tab="style.css">×</button>
+              <button class="tab-close" title="Close Tab" data-tab="style.css" aria-label="Close style.css tab" tabindex="-1">×</button>
             </button>
-            <button class="tab" data-tab="script.js" role="tab">
-              <span class="file-icon icon-js" title="JavaScript">
+            <button class="tab" data-tab="script.js" role="tab" aria-selected="false" aria-controls="editor-container" tabindex="-1">
+              <span class="file-icon icon-js" aria-hidden="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="16 18 22 12 16 6 14 8 10 4 10 10 14 12 16 18"></polygon>
                   <line x1="2" y1="12" x2="14" y2="12"></line>
@@ -111,69 +120,69 @@
                 </svg>
               </span>
               <span class="tab-name">script.js</span>
-              <button class="tab-close" title="Close Tab" data-tab="script.js">×</button>
+              <button class="tab-close" title="Close Tab" data-tab="script.js" aria-label="Close script.js tab" tabindex="-1">×</button>
             </button>
           </div>
-          <div class="editor-toolbar">
-            <button class="toolbar-btn" title="Format">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <div class="editor-toolbar" role="toolbar" aria-label="Editor Actions">
+            <button class="toolbar-btn" title="Format" aria-label="Format Code">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M12 20v-6M6 20V10M18 20V4"></path>
               </svg>
             </button>
-            <button class="toolbar-btn" title="Split">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <button class="toolbar-btn" title="Split" aria-label="Split Editor">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="2" y="2" width="9" height="20" rx="2"></rect>
                 <rect x="13" y="2" width="9" height="20" rx="2"></rect>
               </svg>
             </button>
-            <button class="toolbar-btn" title="More">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <button class="toolbar-btn" title="More" aria-label="More Editor Options">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="12" y1="3" x2="12" y2="21"></line>
                 <line x1="3" y1="12" x2="21" y2="12"></line>
               </svg>
             </button>
           </div>
         </header>
-        <div id="editor-container" class="editor-container"></div>
+        <div id="editor-container" class="editor-container" role="textbox" aria-label="Code Editor" aria-multiline="true" tabindex="0"></div>
       </section>
 
       <!-- Preview Section -->
       <section id="preview" class="preview" aria-label="Preview">
         <header class="preview-header">
           <div class="preview-title">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
               <circle cx="12" cy="12" r="3"></circle>
             </svg>
             <span>PREVIEW</span>
           </div>
-          <div class="preview-toolbar">
-            <button class="toolbar-btn" title="Refresh">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <div class="preview-toolbar" role="toolbar" aria-label="Preview Actions">
+            <button class="toolbar-btn" title="Refresh" aria-label="Refresh Preview">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M23 4v6h-6"></path>
                 <path d="M1 20v-6h6"></path>
                 <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
               </svg>
             </button>
-            <button class="toolbar-btn" title="Run (Ctrl+Enter)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <button class="toolbar-btn" title="Run (Ctrl+Enter)" aria-label="Run Code">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
             </button>
-            <button class="toolbar-btn" title="Popout">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <button class="toolbar-btn" title="Popout" aria-label="Popout Preview">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                 <polyline points="15 3 21 3 21 9"></polyline>
                 <line x1="10" y1="14" x2="21" y2="3"></line>
               </svg>
             </button>
-            <button class="toolbar-btn" title="Fullscreen">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <button class="toolbar-btn" title="Fullscreen" aria-label="Fullscreen Preview">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
               </svg>
             </button>
-            <button class="toolbar-btn" title="Toggle Preview">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <button class="toolbar-btn" title="Toggle Preview" aria-label="Toggle Preview Visibility">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M2 12h6"></path>
                 <path d="M20 12h6"></path>
                 <path d="M14 2v20"></path>
@@ -181,8 +190,8 @@
             </button>
           </div>
         </header>
-        <div id="preview-placeholder" class="preview-placeholder hidden">
-          <span class="placeholder-icon">
+        <div id="preview-placeholder" class="preview-placeholder hidden" aria-hidden="true">
+          <span class="placeholder-icon" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c9a961" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
               <path d="M23 3a2 2 0 0 1-2 2c-1.5 0-2.9-.6-3.8-1.6C17 1.2 15.6.5 14 .5h-.5C11.6.5 9.5 1.8 8 4.2c-.4.6-1.4 2.3-2.8 4.8-1.4 2.6-2.4 4.6-2.4 4.6s1.9 2.8 5.1 2.8c3.2 0 5.1-2.8 5.1-2.8s-1-2 2.4-4.6c1.4-2.5 2.4-4.2 2.8-4.8C14.8 2.6 16.2 2 17.8 2 18.5 2 19.5 2.8 20 3.8c.5 1 .7 1.5.7 1.5zM12 21a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path>
             </svg>
@@ -191,7 +200,7 @@
           <p class="placeholder-subtext">Click "Run" or start coding to see your creation</p>
         </div>
         <div class="preview-content">
-          <iframe id="preview-frame" class="preview-frame" title="Code Preview" sandbox="allow-scripts allow-same-origin"></iframe>
+          <iframe id="preview-frame" class="preview-frame" title="Code Preview" sandbox="allow-scripts allow-same-origin" aria-label="Code Preview"></iframe>
         </div>
       </section>
     </main>
@@ -199,103 +208,107 @@
     <!-- 4. Bottom Console Panel -->
     <section id="console-panel" class="console-panel" aria-label="Console">
       <header class="console-header">
-        <div class="console-tabs">
-          <button class="console-tab active" data-console="console">CONSOLE</button>
-          <button class="console-tab" data-console="terminal">TERMINAL</button>
-          <button class="console-tab" data-console="output">OUTPUT</button>
+        <div class="console-tabs" role="tablist" aria-label="Console Tabs">
+          <button class="console-tab active" data-console="console" role="tab" aria-selected="true" tabindex="0">CONSOLE</button>
+          <button class="console-tab" data-console="terminal" role="tab" aria-selected="false" tabindex="-1">TERMINAL</button>
+          <button class="console-tab" data-console="output" role="tab" aria-selected="false" tabindex="-1">OUTPUT</button>
         </div>
-        <div class="console-actions">
-          <button class="action-btn" title="Clear">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <div class="console-actions" role="toolbar" aria-label="Console Actions">
+          <button class="action-btn" title="Clear" aria-label="Clear Console">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polyline points="3 6 5 6 21 6"></polyline>
               <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
             </svg>
           </button>
-          <button class="action-btn" title="Filter">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <button class="action-btn" title="Filter" aria-label="Filter Console">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
             </svg>
           </button>
-          <button class="action-btn" title="Minimize">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <button class="action-btn" title="Minimize" aria-label="Minimize Console">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
           </button>
-          <button class="action-btn" title="Close">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <button class="action-btn" title="Close" aria-label="Close Console">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
         </div>
       </header>
-      <div id="console-content" class="console-content"></div>
+      <div id="console-content" class="console-content" role="log" aria-live="polite" aria-label="Console Output"></div>
       <div class="console-input">
-        <span class="prompt"> ></span>
-        <input type="text" id="console-input" placeholder="Type a command..." autocomplete="off" />
+        <span class="prompt" aria-hidden="true"> ></span>
+        <input type="text" id="console-input" placeholder="Type a command..." autocomplete="off" aria-label="Console Input" />
       </div>
     </section>
 
     <!-- Command Palette -->
-    <div id="command-palette" class="command-palette hidden" role="dialog" aria-modal="true" aria-label="Command Palette">
+    <div id="command-palette" class="command-palette hidden" role="dialog" aria-modal="true" aria-label="Command Palette" aria-hidden="true">
       <div class="palette-input-wrapper">
-        <span class="icon">
+        <span class="icon" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
         </span>
-        <input type="text" id="palette-input" class="palette-input" placeholder="Search commands or files..." autocomplete="off">
+        <input type="text" id="palette-input" class="palette-input" placeholder="Search commands or files..." autocomplete="off" aria-label="Search Commands">
       </div>
-      <ul id="palette-results" class="palette-results list" role="listbox"></ul>
+      <ul id="palette-results" class="palette-results list" role="listbox" aria-label="Command Results"></ul>
     </div>
 
     <!-- Settings Modal -->
-    <div id="settings-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Settings">
+    <div id="settings-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Settings" aria-hidden="true">
       <div class="modal-content settings-modal">
         <div class="modal-header">
-          <h2 class="modal-title">Settings</h2>
-          <button class="modal-close" data-action="close-modal">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <h2 class="modal-title" id="settings-title">Settings</h2>
+          <button class="modal-close" data-action="close-modal" aria-label="Close Settings" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
         </div>
         <div class="modal-body">
-          <form id="settings-form" class="settings-form">
+          <form id="settings-form" class="settings-form" aria-labelledby="settings-title">
             <div class="form-group">
               <label class="form-label" for="auto-run">Auto-run on change</label>
               <div class="form-control">
-                <input type="checkbox" id="auto-run" class="form-checkbox">
+                <input type="checkbox" id="auto-run" class="form-checkbox" aria-describedby="auto-run-desc">
               </div>
+              <span id="auto-run-desc" class="sr-only">Automatically run code when changes are detected</span>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="debounce-time">Debounce time (ms)</label>
-              <input type="number" id="debounce-time" class="form-input" min="100" max="2000" step="100" value="500">
+              <input type="number" id="debounce-time" class="form-input" min="100" max="2000" step="100" value="500" aria-describedby="debounce-desc">
+              <span id="debounce-desc" class="sr-only">Time to wait before running code after changes, in milliseconds</span>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="console-mode">Console mode</label>
-              <select id="console-mode" class="form-select">
+              <select id="console-mode" class="form-select" aria-describedby="console-mode-desc">
                 <option value="full">Full (logs, warnings, errors)</option>
                 <option value="minimal">Minimal (errors only)</option>
               </select>
+              <span id="console-mode-desc" class="sr-only">Level of detail to show in console output</span>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="theme">Theme</label>
-              <select id="theme" class="form-select">
+              <select id="theme" class="form-select" aria-describedby="theme-desc">
                 <option value="brtcode">BRT CODE (Gold/Dark)</option>
                 <option value="dark">Dark</option>
                 <option value="light">Light</option>
               </select>
+              <span id="theme-desc" class="sr-only">Editor color theme</span>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="font-size">Editor font size</label>
-              <select id="font-size" class="form-select">
+              <select id="font-size" class="form-select" aria-describedby="font-size-desc">
                 <option value="11">11px</option>
                 <option value="12">12px</option>
                 <option value="13">13px</option>
@@ -303,23 +316,24 @@
                 <option value="16">16px</option>
                 <option value="18">18px</option>
               </select>
+              <span id="font-size-desc" class="sr-only">Editor font size in pixels</span>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button class="btn" data-action="close-modal">Cancel</button>
-          <button class="btn primary" data-action="save-settings">Save Settings</button>
+          <button class="btn" data-action="close-modal" type="button">Cancel</button>
+          <button class="btn primary" data-action="save-settings" type="button">Save Settings</button>
         </div>
       </div>
     </div>
 
     <!-- Project Info Modal -->
-    <div id="project-info-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Project Info">
+    <div id="project-info-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Project Info" aria-hidden="true">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title">Project Info</h2>
-          <button class="modal-close" data-action="close-modal">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <h2 class="modal-title" id="project-info-title">Project Info</h2>
+          <button class="modal-close" data-action="close-modal" aria-label="Close Project Info" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
@@ -328,30 +342,169 @@
         <div class="modal-body">
           <div class="project-info">
             <div class="info-item">
-              <label class="info-label">Name:</label>
+              <span class="info-label">Name:</span>
               <span class="info-value" id="project-name">Untitled Project</span>
             </div>
             <div class="info-item">
-              <label class="info-label">Location:</label>
+              <span class="info-label">Location:</span>
               <span class="info-value" id="project-location">--</span>
             </div>
             <div class="info-item">
-              <label class="info-label">Files:</label>
+              <span class="info-label">Files:</span>
               <span class="info-value" id="project-files">3</span>
             </div>
             <div class="info-item">
-              <label class="info-label">Created:</label>
+              <span class="info-label">Created:</span>
               <span class="info-value" id="project-created">--</span>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn primary" data-action="close-modal">OK</button>
+          <button class="btn primary" data-action="close-modal" type="button">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conflict Resolution Modal -->
+    <div id="conflict-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Merge Conflict Resolution" aria-hidden="true">
+      <div class="modal-content conflict-modal">
+        <div class="conflict-header">
+          <h2 id="conflict-header-text">Merge Conflict</h2>
+          <span class="conflict-progress" id="conflict-progress">0/0 resolved</span>
+        </div>
+        <div class="conflict-body">
+          <!-- Sidebar: File List -->
+          <aside class="conflict-sidebar">
+            <div class="conflict-sidebar-header">Conflicting Files</div>
+            <div class="conflict-files-list" id="conflict-files-list" role="listbox" aria-label="Conflicting Files">
+              <!-- Files populated dynamically -->
+            </div>
+          </aside>
+
+          <!-- Main: Diff Viewer -->
+          <div class="conflict-main">
+            <div class="conflict-file-header">
+              <span class="current-file" id="conflict-current-file">Select a file</span>
+            </div>
+            <div class="conflict-diff-viewer" id="conflict-diff-viewer">
+              <!-- Local Pane -->
+              <div class="diff-pane local" id="conflict-local">
+                <div class="code-header">LOCAL</div>
+                <div class="code-content" role="region" aria-label="Local Version">
+                  <p style="padding: 20px; color: var(--text-secondary);">Select a conflicting file to view differences</p>
+                </div>
+              </div>
+
+              <!-- Remote Pane -->
+              <div class="diff-pane remote" id="conflict-remote">
+                <div class="code-header">REMOTE</div>
+                <div class="code-content" role="region" aria-label="Remote Version">
+                  <p style="padding: 20px; color: var(--text-secondary);">Select a conflicting file to view differences</p>
+                </div>
+              </div>
+
+              <!-- Merged Pane (hidden by default) -->
+              <div class="diff-pane merge-pane hidden" id="conflict-merged">
+                <!-- Manual merge content populated dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="conflict-actions">
+          <div class="conflict-actions-left">
+            <button class="btn btn-accept-local" data-action="accept-local" title="Accept local version" aria-label="Accept local version" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Accept Local
+            </button>
+            <button class="btn btn-accept-remote" data-action="accept-remote" title="Accept remote version" aria-label="Accept remote version" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Accept Remote
+            </button>
+            <button class="btn" data-action="manual-merge" title="Edit merged version manually" aria-label="Edit merged version manually" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+              Manual Merge
+            </button>
+          </div>
+          <div class="conflict-actions-right">
+            <button class="btn" data-action="cancel-conflict" type="button">Cancel</button>
+            <button class="btn btn-resolve" data-action="resolve-all" aria-label="Accept all local versions" type="button">Accept All Local</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <script type="module" src="../src/main.js"></script>
+
+  <!-- Service Worker Registration -->
+  <script type="module">
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register(new URL('./sw.js', import.meta.url))
+          .then(registration => {
+            console.log('[App] Service Worker registered:', registration.scope);
+
+            // Listen for updates
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              console.log('[App] Service Worker update found');
+
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  // New content is available, show update notification
+                  console.log('[App] New version available');
+                  if (confirm('New version available! Reload to update?')) {
+                    newWorker.postMessage({ type: 'SKIP_WAITING' });
+                    window.location.reload();
+                  }
+                }
+              });
+            });
+          })
+          .catch(error => {
+            console.error('[App] Service Worker registration failed:', error);
+          });
+
+        // Listen for messages from SW
+        navigator.serviceWorker.addEventListener('message', (event) => {
+          console.log('[App] Message from SW:', event.data);
+
+          if (event.data.type === 'sync-complete') {
+            console.log(`[App] Sync completed: ${event.data.type} - ${event.data.count} items`);
+            // Could show a toast notification here
+          }
+        });
+
+        // Register for background sync
+        if ('sync' in registration) {
+          document.addEventListener('online', () => {
+            registration.sync.register('sync-project').catch(err => {
+              console.warn('[App] Background sync registration failed:', err);
+            });
+          });
+        }
+      });
+
+      // Handle beforeinstallprompt
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later
+        deferredPrompt = e;
+        console.log('[App] PWA install prompt available');
+
+        // Could show an "Install App" button here
+        // document.getElementById('install-button').style.display = 'block';
+      });
+    }
+  </script>
 </body>
 </html>

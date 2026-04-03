@@ -1,6 +1,7 @@
 /**
  * Export Module - Handles project export functionality
  */
+import JSZip from 'jszip';
 import { get } from '../core/state.js';
 import { events } from '../core/events.js';
 
@@ -79,43 +80,107 @@ ${js.replace(/</g, '&lt;')}
    */
   async exportZIP() {
     try {
-      // For now, create a JSON format that can be converted later
-      // When JSZip is loaded, this will be enhanced
-      const projects = get('projects') || [];
       const project = get('currentProject');
-      
-      const zipData = {
-        project: project ? {
-          name: project.name,
-          createdAt: project.createdAt,
-          modified: project.lastModified
-        } : null,
-        files: {
-          html: get('currentFileHTML') || '',
-          css: get('currentFileCSS') || '',
-          js: get('currentFileJS') || ''
-        },
-        libraries: get('libraries') || [],
-        exportedAt: new Date().toISOString()
+      const html = get('currentFileHTML') || '';
+      const css = get('currentFileCSS') || '';
+      const js = get('currentFileJS') || '';
+      const libraries = get('libraries') || [];
+
+      // Create ZIP structure
+      const zip = new JSZip();
+
+      // Generate standalone HTML with embedded CSS and JS
+      const standaloneHTML = this.generateStandaloneHTML(html, css, js, libraries);
+
+      // Add files to ZIP
+      zip.file('index.html', standaloneHTML);
+      zip.file('style.css', css);
+      zip.file('script.js', js);
+
+      // Create config.json
+      const config = {
+        name: project?.name || 'creative-code-project',
+        createdAt: project?.createdAt || new Date().toISOString(),
+        modified: project?.lastModified || new Date().toISOString(),
+        exportedAt: new Date().toISOString(),
+        libraries: libraries.filter(lib => lib.enabled).map(lib => ({
+          name: lib.name,
+          url: lib.url
+        }))
       };
-      
-      const jsonString = JSON.stringify(zipData, null, 2);
-      const blob = new Blob([jsonString], { type: 'application/json' });
-      
-      // For actual ZIP, JSZip would be used:
-      // const zip = new JSZip();
-      // zip.file('index.html', html);
-      // zip.file('style.css', css);
-      // zip.file('script.js', js);
-      // const content = await zip.generateAsync({ type: 'blob' });
-      
-      this.downloadFile(blob, 'project-data.json', 'application/json');
-      
+      zip.file('config.json', JSON.stringify(config, null, 2));
+
+      // Create assets folder structure
+      const assets = zip.folder('assets');
+      assets.folder('media');
+      assets.folder('fonts');
+
+      // Generate ZIP file
+      const content = await zip.generateAsync({
+        type: 'blob',
+        compression: 'DEFLATE',
+        compressionOptions: { level: 6 }
+      });
+
+      // Download the ZIP file
+      const projectName = project?.name || 'project';
+      this.downloadFile(content, `${projectName}.zip`, 'application/zip');
+
       events.dispatch('export:completed', { format: 'zip' });
     } catch (error) {
       console.error('Failed to export ZIP:', error);
       events.dispatch('export:error', { format: 'zip', error });
     }
+  },
+
+  /**
+   * Generate standalone HTML file with embedded CSS, JS, and library CDN links
+   * @param {string} html - HTML content
+   * @param {string} css - CSS content
+   * @param {string} js - JavaScript content
+   * @param {Array} libraries - Array of library objects
+   * @returns {string} Complete standalone HTML document
+   */
+  generateStandaloneHTML(html, css, js, libraries) {
+    // Build library script tags
+    const libraryScripts = (libraries || [])
+      .filter(lib => lib.enabled && lib.url)
+      .map(lib => `    <script src="${lib.url}" charset="utf-8"></script>`)
+      .join('\n');
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Code Project</title>
+  <style>
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* User CSS */
+${css}
+  </style>
+</head>
+<body>
+${html}
+
+${libraryScripts}
+
+<script>
+// User JavaScript
+${js}
+</script>
+</body>
+</html>`;
   },
   
   /**

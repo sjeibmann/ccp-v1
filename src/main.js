@@ -17,7 +17,10 @@ import ConsolePanel from './components/console/console.js';
 import CommandPalette from './components/command-palette/command-palette.js';
 import SettingsModal from './components/modals/settings/settings.js';
 import LibraryManager from './components/modals/library-manager.js';
+import ConflictModal from './components/modals/conflict-modal.js';
 import Export from './components/export.js';
+import StatusBar from './components/status-bar/status-bar.js';
+import GitStatusBar from './components/git-status-bar/git-status-bar.js';
 import GitHubOAuth from './modules/github.js';
 import GitOperations from './modules/git-operations.js';
 
@@ -34,24 +37,42 @@ const modules = [
   CommandPalette,
   SettingsModal,
   LibraryManager,
-  Export
+  ConflictModal,
+  Export,
+  StatusBar,
+  GitStatusBar
 ];
 
 modules.forEach(module => {
   app.registerModule(module.name, module);
 });
 
-// Initialize GitHub OAuth (separate module)
-const githubOAuth = new GitHubOAuth();
-app.registerModule('githubOAuth', githubOAuth);
+// Initialize GitHub OAuth (separate module - singleton object)
+app.registerModule('githubOAuth', GitHubOAuth);
 
 // Initialize Git Operations (requires GitHub OAuth)
 const gitOperations = new GitOperations();
 gitOperations.init(githubOAuth);
 app.registerModule('gitOperations', gitOperations);
 
+// Track keyboard navigation mode
+let isKeyboardNav = false;
+
 // Setup event handlers
 function setupEventHandlers() {
+  // Track keyboard navigation for focus indicators
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      isKeyboardNav = true;
+      document.body.classList.add('keyboard-nav');
+    }
+  });
+
+  document.addEventListener('mousedown', () => {
+    isKeyboardNav = false;
+    document.body.classList.remove('keyboard-nav');
+  });
+
   // Global keyboard shortcuts
   document.addEventListener('keydown', (e) => {
     // Cmd/Ctrl + R to refresh
@@ -59,43 +80,69 @@ function setupEventHandlers() {
       e.preventDefault();
       events.dispatch('preview:refresh');
     }
-    
+
     // Cmd/Ctrl + Enter to run
     if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
       e.preventDefault();
       events.dispatch('editor:run');
     }
-    
+
     // Cmd/Ctrl + P for command palette
     if ((e.metaKey || e.ctrlKey) && e.key === 'p') {
       e.preventDefault();
       openCommandPalette();
     }
-    
+
     // Cmd/Ctrl + N for new file
     if ((e.metaKey || e.ctrlKey) && e.key === 'n') {
       e.preventDefault();
       events.dispatch('editor:newFile');
     }
-    
+
     // Cmd/Ctrl + Shift + P for toggle preview visibility
     if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'P') {
       e.preventDefault();
       events.dispatch('layout:toggle-preview');
     }
-    
+
     // Cmd/Ctrl + B for toggle file tree visibility
     if ((e.metaKey || e.ctrlKey) && e.key === 'b') {
       e.preventDefault();
       events.dispatch('layout:toggle-sidebar');
     }
-    
+
+    // Cmd/Ctrl + Shift + C for git commit
+    if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'C') {
+      e.preventDefault();
+      events.dispatch('git:showCommitModal');
+    }
+
+    // Cmd/Ctrl + Shift + P for git push
+    if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'P') {
+      e.preventDefault();
+      events.dispatch('git:push');
+    }
+
+    // Cmd/Ctrl + Shift + L for git pull
+    if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'L') {
+      e.preventDefault();
+      events.dispatch('git:pull');
+    }
+
     // Escape to close modals
     if (e.key === 'Escape') {
       e.preventDefault();
-      events.dispatch('modal:close');
+      closeModals();
+    }
+
+    // Trap focus in modals
+    if (e.key === 'Tab') {
+      trapFocusInModal(e);
     }
   });
+
+  // Setup focus trap for modals
+  setupModalFocusTrap();
   
   // Click handlers for buttons with data-action
   document.addEventListener('click', (e) => {
@@ -145,8 +192,69 @@ function openCommandPalette() {
 function closeModals() {
   document.querySelectorAll('.modal').forEach(modal => {
     modal.classList.add('hidden');
+    modal.setAttribute('aria-hidden', 'true');
   });
-  document.getElementById('command-palette')?.classList.add('hidden');
+  const palette = document.getElementById('command-palette');
+  if (palette) {
+    palette.classList.add('hidden');
+    palette.setAttribute('aria-hidden', 'true');
+  }
+}
+
+/**
+ * Setup focus trap for modals
+ */
+function setupModalFocusTrap() {
+  // Listen for modal open events
+  events.on('modal:open', (event) => {
+    const modalId = event.detail?.modalId;
+    if (modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.setAttribute('aria-hidden', 'false');
+        // Focus first focusable element
+        const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (firstFocusable) {
+          firstFocusable.focus();
+        }
+      }
+    }
+  });
+
+  // Close modals on backdrop click
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal')) {
+      closeModals();
+    }
+  });
+}
+
+/**
+ * Trap focus within open modal
+ * @param {KeyboardEvent} e - Keyboard event
+ */
+function trapFocusInModal(e) {
+  const openModal = document.querySelector('.modal:not(.hidden)');
+  if (!openModal) return;
+
+  const focusableElements = openModal.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  const firstFocusable = focusableElements[0];
+  const lastFocusable = focusableElements[focusableElements.length - 1];
+
+  if (e.shiftKey) {
+    if (document.activeElement === firstFocusable) {
+      lastFocusable.focus();
+      e.preventDefault();
+    }
+  } else {
+    if (document.activeElement === lastFocusable) {
+      firstFocusable.focus();
+      e.preventDefault();
+    }
+  }
 }
 
 // Initialize when DOM is ready

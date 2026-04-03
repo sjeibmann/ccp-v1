@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - BRT CODE</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+      background: #0d1117;
+      color: #c9a961;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 480px;
+    }
+    .icon {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 2rem;
+      stroke: #c9a961;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    p {
+      color: #8b949e;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    button {
+      background: #c9a961;
+      color: #0d1117;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    button:hover {
+      background: #d4b76a;
+      transform: translateY(-2px);
+    }
+    button.secondary {
+      background: transparent;
+      color: #c9a961;
+      border: 1px solid #c9a961;
+    }
+    button.secondary:hover {
+      background: rgba(201, 169, 97, 0.1);
+    }
+    .status {
+      margin-top: 2rem;
+      font-size: 0.875rem;
+      color: #8b949e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 4v6h6"/>
+      <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+    </svg>
+    <h1>You're Offline</h1>
+    <p>BRT CODE requires an internet connection to access your projects. Check your connection and try again.</p>
+    
+    <div class="actions">
+      <button onclick="window.location.reload()">Try Again</button>
+      <button class="secondary" onclick="history.back()">Go Back</button>
+    </div>
+    
+    <div class="status" id="status">
+      Checking connection status...
+    </div>
+  </div>
+
+  <script>
+    // Check connection status
+    function updateStatus() {
+      const statusEl = document.getElementById('status');
+      if (navigator.onLine) {
+        statusEl.textContent = 'Connection restored! Redirecting...';
+        statusEl.style.color = '#3fb950';
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1500);
+      } else {
+        statusEl.textContent = 'Waiting for connection...';
+        statusEl.style.color = '#8b949e';
+      }
+    }
+
+    // Listen for online event
+    window.addEventListener('online', updateStatus);
+    
+    // Initial check
+    updateStatus();
+  </script>
+</body>
+</html>

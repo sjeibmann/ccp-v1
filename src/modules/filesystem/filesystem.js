@@ -94,6 +94,44 @@ class FileSystem {
   }
 
   /**
+   * Write binary content to a file (for images, fonts, media)
+   * @param {FileSystemDirectoryHandle} directory - Directory handle
+   * @param {string} filePath - Path to the file (relative to directory)
+   * @param {Blob|File} blob - Binary content to write
+   * @param {Object} [options] - File options
+   * @param {boolean} [options.createIfNotExists=true] - Create file if it doesn't exist
+   * @returns {Promise<void>}
+   */
+  static async writeFileBinary(directory, filePath, blob, options = {}) {
+    try {
+      const createIfNotExists = options.createIfNotExists !== false;
+      
+      // Handle nested directories
+      const pathParts = filePath.split('/').filter(p => p);
+      const fileName = pathParts.pop();
+      
+      let targetDir = directory;
+      for (const part of pathParts) {
+        targetDir = await targetDir.getDirectoryHandle(part, { create: true });
+      }
+
+      let fileHandle;
+      if (createIfNotExists) {
+        fileHandle = await targetDir.getFileHandle(fileName, { create: true });
+      } else {
+        fileHandle = await targetDir.getFileHandle(fileName, { create: false });
+      }
+
+      const writable = await fileHandle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+    } catch (error) {
+      console.error(`Failed to write binary file "${filePath}":`, error);
+      throw error;
+    }
+  }
+
+  /**
    * Create a new file in the directory
    * @param {FileSystemDirectoryHandle} directory - Directory handle
    * @param {string} filePath - Path where to create the file
@@ -241,6 +279,122 @@ class FileSystem {
     
     for (const [filePath, content] of Object.entries(structure)) {
       await this.writeFile(directory, filePath, content);
+    }
+  }
+
+  /**
+   * Create a new folder in the directory
+   * @param {FileSystemDirectoryHandle} directory - Directory handle
+   * @param {string} folderPath - Path where to create the folder
+   * @returns {Promise<FileSystemDirectoryHandle>} Created folder handle
+   */
+  static async createFolder(directory, folderPath) {
+    try {
+      // Handle nested paths
+      const parts = folderPath.split('/').filter(p => p);
+      let currentDir = directory;
+      
+      for (let i = 0; i < parts.length; i++) {
+        const part = parts[i];
+        // Try to get existing directory first, create if it doesn't exist
+        try {
+          currentDir = await currentDir.getDirectoryHandle(part, { create: false });
+        } catch (error) {
+          // Directory doesn't exist, create it
+          currentDir = await currentDir.getDirectoryHandle(part, { create: true });
+        }
+      }
+      
+      return currentDir;
+    } catch (error) {
+      console.error(`Failed to create folder "${folderPath}":`, error);
+      throw error;
+    }
+  }
+
+  /**
+   * Rename a file or folder
+   * @param {FileSystemDirectoryHandle} directory - Directory handle
+   * @param {string} oldPath - Current path
+   * @param {string} newPath - New path
+   * @returns {Promise<void>}
+   */
+  static async rename(directory, oldPath, newPath) {
+    try {
+      // Check if it's a file or folder by trying to get it
+      let handle;
+      let isFolder = false;
+      
+      try {
+        handle = await directory.getFileHandle(oldPath, { create: false });
+      } catch (fileError) {
+        try {
+          handle = await directory.getDirectoryHandle(oldPath, { create: false });
+          isFolder = true;
+        } catch (folderError) {
+          throw new Error(`File or folder "${oldPath}" not found`);
+        }
+      }
+      
+      if (isFolder) {
+        // For folders, we need to recreate the structure
+        // Get all entries in the folder
+        const entries = [];
+        for await (const entry of handle.values()) {
+          entries.push(entry);
+        }
+        
+        // Create new folder
+        const newHandle = await directory.getDirectoryHandle(newPath, { create: true });
+        
+        // Copy all entries from old to new
+        for (const entry of entries) {
+          if (entry.kind === 'file') {
+            const file = await entry.getFile();
+            const content = await file.text();
+            const fileHandle = await newHandle.getFileHandle(entry.name, { create: true });
+            const writable = await fileHandle.createWritable();
+            await writable.write(content);
+            await writable.close();
+          } else if (entry.kind === 'directory') {
+            await this.createFolder(newHandle, entry.name);
+          }
+        }
+        
+        // Remove old folder
+        await directory.removeEntry(oldPath, { recursive: true });
+      } else {
+        // For files, read content and create new file
+        const file = await handle.getFile();
+        const content = await file.text();
+        
+        // Create new file
+        await this.writeFile(directory, newPath, content, { createIfNotExists: true });
+        
+        // Delete old file
+        await this.deleteFile(directory, oldPath);
+      }
+    } catch (error) {
+      console.error(`Failed to rename "${oldPath}" to "${newPath}":`, error);
+      throw error;
+    }
+  }
+
+  /**
+   * Delete a file or folder
+   * @param {FileSystemDirectoryHandle} directory - Directory handle
+   * @param {string} path - Path to delete
+   * @param {Object} [options] - Delete options
+   * @param {boolean} [options.recursive=false] - Delete recursively (for folders)
+   * @returns {Promise<void>}
+   */
+  static async delete(directory, path, options = {}) {
+    try {
+      const recursive = options.recursive !== false;
+      await directory.removeEntry(path, { recursive });
+    } catch (error) {
+      console.error(`Failed to delete "${path}":`, error);
+      throw error;
     }
   }
 }

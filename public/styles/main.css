@@ -130,7 +130,7 @@ body {
   height: 40px;
   border-radius: var(--radius-sm);
   background: transparent;
-  border: none;
+  border: 1px solid transparent;
   color: var(--text-secondary);
   cursor: pointer;
   display: flex;
@@ -143,6 +143,17 @@ body {
 .icon-btn:hover {
   background-color: var(--bg-active);
   color: var(--text-primary);
+}
+
+.icon-btn:focus {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.icon-btn:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+  border-color: var(--border-focus);
 }
 
 .icon-btn.active {
@@ -960,6 +971,78 @@ body {
   flex: 0 0 14px;
 }
 
+/* Context Menu Styles */
+.context-menu {
+  position: absolute;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  min-width: 180px;
+  padding: var(--space-1) 0;
+  animation: contextMenuFadeIn var(--transition-fast);
+}
+
+@keyframes contextMenuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.context-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.context-menu-item:hover {
+  background-color: var(--bg-active);
+}
+
+.context-menu-item:focus {
+  outline: none;
+  background-color: var(--bg-active);
+}
+
+.context-menu-item svg {
+  flex-shrink: 0;
+}
+
+.context-menu-item[data-action="delete"] {
+  color: var(--color-error);
+}
+
+.context-menu-item[data-action="delete"]:hover {
+  background-color: rgba(255, 123, 114, 0.1);
+}
+
+.context-menu-divider {
+  height: 1px;
+  margin: var(--space-1) 0;
+  background-color: var(--border-primary);
+}
+
+/* File tree context menu specific positioning */
+.file-tree-context-menu {
+  position: absolute;
+}
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 10px;
@@ -1026,4 +1109,103 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus Indicators - WCAG 2.1 AA Compliant */
+*:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Keyboard Navigation Mode */
+.keyboard-nav *:focus,
+.keyboard-nav *:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Ensure all interactive elements have visible focus */
+button:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  z-index: 10000;
+  border: 2px solid var(--border-focus);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+}
+
+.skip-link:focus {
+  top: 8px;
+  left: 8px;
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* File Tree ARIA Styles */
+.file-tree-item[role="treeitem"][aria-selected="true"] {
+  background-color: var(--bg-active);
+  color: var(--text-primary);
+}
+
+.file-tree-item[role="treeitem"][aria-selected="true"]::before {
+  content: '';
+  position: absolute;
+  left: var(--sidebar-width);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 24px;
+  background-color: var(--border-accent);
+  border-radius: 0 2px 2px 0;
+}
+
+/* Command Palette ARIA Styles */
+.palette-result[role="option"][aria-selected="true"] {
+  background-color: var(--bg-tertiary);
+}
+
+/* Visually hidden but accessible */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus trap indicator for modals */
+.modal:focus-within {
+  outline: none;
 }

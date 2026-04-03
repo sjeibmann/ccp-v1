@@ -10,6 +10,7 @@ const ConsolePanel = {
   messages: [],
   consoleMode: 'full', // 'full' | 'minimal'
   autoScroll: true,
+  currentFilter: 'all', // 'all' | 'log' | 'warn' | 'error' | 'info'
   
   /**
    * Initialize console panel
@@ -41,6 +42,15 @@ const ConsolePanel = {
     this.overrideConsole();
     
     console.log('ConsolePanel component initialized');
+  },
+  
+  /**
+   * Navigate to a specific line in the editor
+   * @param {number} line - Line number
+   * @param {number} col - Column number
+   */
+  navigateToLine(line, col) {
+    events.dispatch('console:navigateToLine', { line, col });
   },
   
   /**
@@ -104,6 +114,148 @@ const ConsolePanel = {
         }
       });
     }
+    
+    // Listen for messages from preview iframe
+    window.addEventListener('message', (event) => {
+      this.handleIframeMessage(event);
+    });
+    
+    // Setup filter buttons
+    this.setupFilterButtons();
+  },
+  
+  /**
+   * Setup filter buttons
+   */
+  setupFilterButtons() {
+    const filterButtons = document.querySelectorAll('.console-filter-btn');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        this.setFilter(filter);
+        
+        // Update active state
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  },
+  
+  /**
+   * Set filter and re-render
+   * @param {string} filter - Filter type ('all', 'log', 'warn', 'error', 'info')
+   */
+  setFilter(filter) {
+    this.currentFilter = filter;
+    this.reRenderMessages();
+  },
+  
+  /**
+   * Re-render all messages based on current filter
+   */
+  reRenderMessages() {
+    // Clear container
+    this.container.innerHTML = '';
+    
+    // Re-render filtered messages
+    this.messages.forEach(msg => {
+      if (this.shouldShowMessage(msg.type)) {
+        this.renderMessageToDOM(msg.type, msg.message, msg.timestamp, msg.stack, msg.line, msg.url);
+      }
+    });
+    
+    // Auto scroll to bottom
+    if (this.autoScroll) {
+      this.container.scrollTop = this.container.scrollHeight;
+    }
+  },
+  
+  /**
+   * Check if message should be shown based on filter
+   * @param {string} type - Message type
+   * @returns {boolean} Whether to show the message
+   */
+  shouldShowMessage(type) {
+    if (this.currentFilter === 'all') return true;
+    return type === this.currentFilter;
+  },
+  
+  /**
+   * Handle messages from iframe
+   * @param {MessageEvent} event - Message event from iframe
+   */
+  handleIframeMessage(event) {
+    // Security check - only accept messages from our iframe
+    const previewFrame = document.getElementById('preview-frame');
+    if (!previewFrame || event.source !== previewFrame.contentWindow) {
+      return;
+    }
+    
+    const data = event.data;
+    if (!data || !data.type) return;
+    
+    if (data.type === 'console') {
+      // Handle console message
+      const message = data.args ? data.args.join(' ') : '';
+      this.addEntry(data.level, message, data.timestamp);
+    } else if (data.type === 'error') {
+      // Handle error message
+      const stack = data.stack || '';
+      const message = data.message || 'Unknown error';
+      this.addEntryWithDetails('error', message, data.timestamp, stack, data.line, data.url);
+    }
+  },
+  
+  /**
+   * Add entry to console
+   * @param {string} type - Entry type
+   * @param {string} message - Message content
+   * @param {string} timestamp - Timestamp
+   */
+  addEntry(type, message, timestamp) {
+    this.addEntryWithDetails(type, message, timestamp);
+  },
+  
+  /**
+   * Add entry with full details
+   * @param {string} type - Entry type
+   * @param {string} message - Message content
+   * @param {string} timestamp - Timestamp
+   * @param {string} stack - Stack trace
+   * @param {number} line - Line number
+   * @param {string} url - URL
+   */
+  addEntryWithDetails(type, message, timestamp, stack = '', line = 0, url = '') {
+    // Filter in minimal mode
+    if (this.consoleMode === 'minimal' && type !== 'error') {
+      return;
+    }
+    
+    const timestampStr = timestamp || new Date().toISOString();
+    
+    // Store message
+    const msgData = { 
+      type, 
+      message, 
+      timestamp: timestampStr,
+      stack,
+      line,
+      url
+    };
+    this.messages.push(msgData);
+    
+    // Only render if passes filter
+    if (this.shouldShowMessage(type)) {
+      this.renderMessageToDOM(type, message, timestampStr, stack, line, url);
+      
+      // Auto scroll to bottom
+      if (this.autoScroll) {
+        this.container.scrollTop = this.container.scrollHeight;
+      }
+    }
+    
+    // Dispatch event for state sync
+    events.dispatch('console:messageAdded', msgData);
   },
   
   /**
@@ -178,24 +330,7 @@ const ConsolePanel = {
    * @param {string} [timestamp] - Optional timestamp
    */
   addMessage(type, message, timestamp = null) {
-    // Filter in minimal mode
-    if (this.consoleMode === 'minimal' && type !== 'error') {
-      return;
-    }
-    
-    // Store message
-    this.messages.push({ type, message, timestamp: timestamp || new Date().toISOString() });
-    
-    // Add to DOM
-    this.renderMessage(type, message, timestamp);
-    
-    // Auto scroll to bottom
-    if (this.autoScroll) {
-      this.container.scrollTop = this.container.scrollHeight;
-    }
-    
-    // Dispatch event for state sync
-    events.dispatch('console:messageAdded', { type, message });
+    this.addEntryWithDetails(type, message, timestamp);
   },
   
   /**
@@ -205,17 +340,86 @@ const ConsolePanel = {
    * @param {string} timestamp - Message timestamp
    */
   renderMessage(type, message, timestamp) {
+    this.renderMessageToDOM(type, message, timestamp);
+  },
+  
+  /**
+   * Render message to DOM with full details
+   * @param {string} type - Message type
+   * @param {string} message - Message content
+   * @param {string} timestamp - Message timestamp
+   * @param {string} stack - Stack trace
+   * @param {number} line - Line number
+   * @param {string} url - URL
+   */
+  renderMessageToDOM(type, message, timestamp, stack = '', line = 0, url = '') {
     const time = this.formatTime(timestamp || new Date().toISOString());
     
     const entry = document.createElement('div');
     entry.className = `console-entry ${type}`;
+    
+    let locationInfo = '';
+    if (line > 0) {
+      locationInfo = `at line ${line}`;
+      if (url && url !== 'unknown') {
+        locationInfo += ` in ${url}`;
+      }
+    }
+    
+    let stackHtml = '';
+    if (stack) {
+      const stackLines = stack.split('\n').filter(l => l.trim());
+      stackHtml = stackLines.map((line, index) => {
+        // Try to extract file path and line number
+        const match = line.match(/at\s+(.+?):(\d+):(\d+)/);
+        if (match || line.includes(':')) {
+          return `<div class="stack-line" data-index="${index}">${this.escapeHtml(line)}</div>`;
+        }
+        return `<div class="stack-message">${this.escapeHtml(line)}</div>`;
+      }).join('');
+      
+      if (stackHtml) {
+        stackHtml = `<div class="stack-trace">${stackHtml}</div>`;
+      }
+    }
+    
     entry.innerHTML = `
-      <span class="timestamp">${time}</span>
-      <span class="type">${type.toUpperCase()}</span>
-      <span class="message">${this.escapeHtml(message)}</span>
+      <div class="console-entry-header">
+        <span class="timestamp">${time}</span>
+        <span class="type">${type.toUpperCase()}</span>
+        <span class="message">${this.escapeHtml(message)}</span>
+        ${locationInfo ? `<span class="location">${locationInfo}</span>` : ''}
+      </div>
+      ${stackHtml}
     `;
     
+    // Add click handlers for stack trace lines
+    if (stack) {
+      const stackLines = entry.querySelectorAll('.stack-line');
+      stackLines.forEach((lineEl) => {
+        lineEl.addEventListener('click', () => {
+          const lineText = lineEl.textContent;
+          // Try to navigate to the error location
+          this.navigateToStackLine(lineText);
+        });
+      });
+    }
+    
     this.container.appendChild(entry);
+  },
+  
+  /**
+   * Navigate to a stack line in the editor
+   * @param {string} lineText - Stack line text
+   */
+  navigateToStackLine(lineText) {
+    // Extract line and column numbers
+    const match = lineText.match(/:(\d+):(\d+)$/);
+    if (match) {
+      const line = parseInt(match[1], 10);
+      const col = parseInt(match[2], 10);
+      events.dispatch('console:navigateToLine', { line, col });
+    }
   },
   
   /**
